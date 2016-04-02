@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>How to connect SQLite with Java? - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=038622610830">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=fd7230a85918">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta name="og:type" content="website">
+    <meta name="og:image" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=fde65a5a78c6">
+    <meta name="og:title" content="How to connect SQLite with Java?">
+    <meta name="og:description" content="I am using one simple code to access the SQLite database from Java application .
+My code is
+
+ import java.sql.Connection;  
+ import java.sql.DriverManager;  
+ import java.sql.ResultSet;  
+ import ">
+    <meta name="og:url" content="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java">
+    <link rel="canonical" href="./How to connect SQLite with Java  - Stack Overflow_files/How to connect SQLite with Java  - Stack Overflow.htm">
+
+    
+    
+    <script type="text/javascript" async="" src="./How to connect SQLite with Java  - Stack Overflow_files/ados"></script><script async="" src="./How to connect SQLite with Java  - Stack Overflow_files/quant.js"></script><script async="" src="./How to connect SQLite with Java  - Stack Overflow_files/beacon.js"></script><script async="" src="./How to connect SQLite with Java  - Stack Overflow_files/analytics.js"></script><script type="text/javascript" async="" src="./How to connect SQLite with Java  - Stack Overflow_files/ados.js"></script><script src="./How to connect SQLite with Java  - Stack Overflow_files/jquery.min.js"></script>
+    <script src="./How to connect SQLite with Java  - Stack Overflow_files/stub.en.js"></script>
+    <link rel="stylesheet" type="text/css" href="./How to connect SQLite with Java  - Stack Overflow_files/all.css">
+    
+    <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;How to connect SQLite with Java?&#39;" href="http://stackoverflow.com/feeds/question/1525444">
+    <script>
+        
+        StackExchange.ready(function () {
+            StackExchange.using("postValidation", function () {
+                StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+            });
+
+            
+            StackExchange.question.init({showAnswerHelp:true,totalCommentCount:1,shownCommentCount:1,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:1525444});
+
+            styleCode();
+
+                StackExchange.realtime.subscribeToQuestion('1', '1525444');
+            
+                    });
+    </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1404768521,"networkMetaHostname":"meta.stackexchange.com","styleCode":true,"enableUserHovercards":true,"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"2950f663577415880303a059731e2b53","isAnonymous":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"7e12c17693cd","js/moderator.en.js":"d079f3cef46b","js/full-anon.en.js":"21bfed44a167","js/full.en.js":"34529d480e9a","js/wmd.en.js":"d235be697b8b","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"d1445c9369b3","js/help.en.js":"7a31c9feb96c","js/tageditor.en.js":"b3519f4f95b5","js/tageditornew.en.js":"6b371c613639","js/inline-tag-editing.en.js":"de4b95686297","js/revisions.en.js":"e707189c34fa","js/review.en.js":"9718f775bec4","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"fd0f4221b2cf","js/explore-qlist.en.js":"8b8b631bd679","js/events.en.js":"b47a1c697b97"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+<script async="" src="./How to connect SQLite with Java  - Stack Overflow_files/full-anon.en.js"></script><script async="" src="./How to connect SQLite with Java  - Stack Overflow_files/post-validation.en.js"></script><script async="" src="./How to connect SQLite with Java  - Stack Overflow_files/prettify-full.en.js"></script><script type="text/javascript" src="./How to connect SQLite with Java  - Stack Overflow_files/adFeedback.js"></script><link rel="stylesheet" href="http://static.adzerk.net/Extensions/adFeedback.css"><link href="./How to connect SQLite with Java  - Stack Overflow_files/sidebar.min.css" type="text/css" rel="stylesheet"></head>
+<body class="question-page new-topbar">
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+<div class="topbar">
+    <div class="topbar-wrapper">
+        
+        <div class="js-topbar-dialog-corral">
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+            <a href="http://chat.stackoverflow.com/" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+                    <a href="http://blog.stackoverflow.com/" data-gps-track="site_switcher.click({ item_type:7 })">blog</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link" href="http://careers.stackoverflow.com/" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Careers 2.0
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+                        <a href="https://stackoverflow.com/users/signup?returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1525444%2fhow-to-connect-sqlite-with-java" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a>
+                    or
+                    <a href="https://stackoverflow.com/users/login?returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1525444%2fhow-to-connect-sqlite-with-java" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a>
+
+                    to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+            
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 128 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+            
+        </div>
+
+        <div class="topbar-links">
+            
+                <div class="links-container">
+                    <span class="topbar-menu-links">
+                            <a href="https://stackoverflow.com/users/signup?returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1525444%2fhow-to-connect-sqlite-with-java" class="login-link">sign up</a>
+                            <a href="https://stackoverflow.com/users/login?returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f1525444%2fhow-to-connect-sqlite-with-java" class="login-link">log in</a>
+                            <a href="http://stackoverflow.com/tour">tour</a>
+
+                            <a href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                            <a href="http://careers.stackoverflow.com/">careers 2.0</a>
+                    </span>
+                </div>
+
+			<div class="search-container">
+                <form id="search" action="http://stackoverflow.com/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="search" value="" tabindex="1" autocomplete="off" maxlength="240">
+                </form>
+			</div>
+            	
+        </div>      
+    </div> 
+</div>
+<script>
+    StackExchange.ready(function () { StackExchange.topbar.init(); });
+</script>
+    <div class="container">
+        <div id="header" class="headeranon">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs mainnavsanon">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                        <li><a id="nav-unanswered" href="http://stackoverflow.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content">
+            
+
+<div itemscope="" itemtype="http://schema.org/Article">
+	<link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+			<!--googleoff: all-->
+
+<div id="herobox-mini">
+    <div id="hero-content">
+        <span id="controls">
+            <a href="http://stackoverflow.com/tour" id="tell-me-more" class="button">Take the 2-minute tour</a>
+            <span id="close"><a title="click to dismiss">×</a></span>
+        </span>
+        <div id="blurb">
+            Stack Overflow is a question and answer site for professional and enthusiast programmers. It's 100% free, no registration required.
+        </div>        
+    </div>
+    <script>
+        $('#tell-me-more').click(function () {
+            var clickSource = $("body").attr("class") + '-mini';
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+            }
+
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("aboutpage.click", { aboutclick_location: clickSource } , true);
+            });
+        });
+        $('#herobox-mini #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "close" }, true);
+            });
+            $.cookie("hero", "none", { path: "/" });
+            var $hero = $("#herobox-mini");
+            $hero.slideUp('fast', function () { $hero.remove(); });
+            return false;
+        });
+    </script>
+</div>
+			<!--googleon: all-->
+			<div id="question-header">
+			<h1 itemprop="name"><a href="./How to connect SQLite with Java  - Stack Overflow_files/How to connect SQLite with Java  - Stack Overflow.htm" class="question-hyperlink">How to connect SQLite with Java?</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="1525444" id="question">
+
+    <script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk2142536018",4).setZone(43) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk2142536018"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiY20iOjI5MTEsImNoIjoxMTc4LCJjciI6NTkyMiwiZGkiOiI2M2FhNmE2OWJmYzk0YWQ1YTJmYjAzYjgyMDg1YjFhNSIsImRtIjoxLCJmYyI6MTAxODcsImZsIjo3NDcyLCJpcCI6IjEwNS4yMzcuOTguODkiLCJrdyI6ImphdmEsc3FsaXRlLGpkYmMsY2xhc3NwYXRoIiwibnciOjIyLCJwYyI6MCwicHIiOjE2MDQsInJ0IjoxLCJyZiI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jby56YS8iLCJzdCI6ODI3NywidWsiOiJiMTU2YTk2MGIxNzU0NDljOGYxNmViZWFiNmNjNDRlNiIsInpuIjo0MywidHMiOjE0MDQ3Njg4NjM5NjAsInVyIjoiaHR0cDovL2NhcmVlcnMuc3RhY2tvdmVyZmxvdy5jb20vIn0&s=-kwYWoq-Kqr1OykEmxJHElpKt3g" rel="nofollow" target="_blank" title=""><img src="./How to connect SQLite with Java  - Stack Overflow_files/bee37138e0414d6f99d68ae55955c4fa.png" title="" alt="" border="0" width="728" height="90"></a><div class="adzerk-vote-controls" style="display: none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li></ul><a href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" src="./How to connect SQLite with Java  - Stack Overflow_files/i.gif"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="1525444">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+    <span class="vote-count-post ">16</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+    
+    <a class="star-off" href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b>10</b></div>   
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="description">
+
+        <p>I am using one simple code to access the SQLite database from Java application .
+My code is</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pln"> </span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">sql</span><span class="pun">.</span><span class="typ">Connection</span><span class="pun">;</span><span class="pln">  
+ </span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">sql</span><span class="pun">.</span><span class="typ">DriverManager</span><span class="pun">;</span><span class="pln">  
+ </span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">sql</span><span class="pun">.</span><span class="typ">ResultSet</span><span class="pun">;</span><span class="pln">  
+ </span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">sql</span><span class="pun">.</span><span class="typ">Statement</span><span class="pun">;</span><span class="pln">  
+ </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ConnectSQLite</span><span class="pln"> 
+ </span><span class="pun">{</span><span class="pln">  
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> 
+  </span><span class="pun">{</span><span class="pln">  
+     </span><span class="typ">Connection</span><span class="pln"> connection </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;</span><span class="pln">  
+     </span><span class="typ">ResultSet</span><span class="pln"> resultSet </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;</span><span class="pln">  
+     </span><span class="typ">Statement</span><span class="pln"> statement </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;</span><span class="pln">  
+
+     </span><span class="kwd">try</span><span class="pln"> 
+     </span><span class="pun">{</span><span class="pln">  
+         </span><span class="typ">Class</span><span class="pun">.</span><span class="pln">forName</span><span class="pun">(</span><span class="str">"org.sqlite.JDBC"</span><span class="pun">);</span><span class="pln">  
+         connection </span><span class="pun">=</span><span class="pln"> </span><span class="typ">DriverManager</span><span class="pun">.</span><span class="pln">getConnection</span><span class="pun">(</span><span class="str">"jdbc:sqlite:D:\\testdb.db"</span><span class="pun">);</span><span class="pln">  
+         statement </span><span class="pun">=</span><span class="pln"> connection</span><span class="pun">.</span><span class="pln">createStatement</span><span class="pun">();</span><span class="pln">  
+         resultSet </span><span class="pun">=</span><span class="pln"> statement  
+                 </span><span class="pun">.</span><span class="pln">executeQuery</span><span class="pun">(</span><span class="str">"SELECT EMPNAME FROM EMPLOYEEDETAILS"</span><span class="pun">);</span><span class="pln">  
+         </span><span class="kwd">while</span><span class="pln"> </span><span class="pun">(</span><span class="pln">resultSet</span><span class="pun">.</span><span class="kwd">next</span><span class="pun">())</span><span class="pln"> 
+         </span><span class="pun">{</span><span class="pln">  
+             </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"EMPLOYEE NAME:"</span><span class="pln">  
+                     </span><span class="pun">+</span><span class="pln"> resultSet</span><span class="pun">.</span><span class="pln">getString</span><span class="pun">(</span><span class="str">"EMPNAME"</span><span class="pun">));</span><span class="pln">  
+         </span><span class="pun">}</span><span class="pln">  
+     </span><span class="pun">}</span><span class="pln"> 
+     </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Exception</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> 
+     </span><span class="pun">{</span><span class="pln">  
+         e</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln">  
+     </span><span class="pun">}</span><span class="pln">
+     </span><span class="kwd">finally</span><span class="pln"> 
+     </span><span class="pun">{</span><span class="pln">  
+         </span><span class="kwd">try</span><span class="pln"> 
+         </span><span class="pun">{</span><span class="pln">  
+             resultSet</span><span class="pun">.</span><span class="pln">close</span><span class="pun">();</span><span class="pln">  
+             statement</span><span class="pun">.</span><span class="pln">close</span><span class="pun">();</span><span class="pln">  
+             connection</span><span class="pun">.</span><span class="pln">close</span><span class="pun">();</span><span class="pln">  
+         </span><span class="pun">}</span><span class="pln"> 
+         </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Exception</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> 
+         </span><span class="pun">{</span><span class="pln">  
+             e</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln">  
+         </span><span class="pun">}</span><span class="pln">  
+     </span><span class="pun">}</span><span class="pln">  
+ </span><span class="pun">}</span><span class="pln">  
+</span><span class="pun">}</span><span class="pln">  </span></code></pre>
+
+<p>But this code gives one exception like</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pln">java</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="typ">ClassNotFoundException</span><span class="pun">:</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">sqlite</span><span class="pun">.</span><span class="pln">JDBC</span></code></pre>
+
+<p>How can I slove this,please help me.</p>
+
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag js-gps-track" title="show questions tagged &#39;java&#39;" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/sqlite" class="post-tag js-gps-track" title="show questions tagged &#39;sqlite&#39;" rel="tag">sqlite</a> <a href="http://stackoverflow.com/questions/tagged/jdbc" class="post-tag js-gps-track" title="show questions tagged &#39;jdbc&#39;" rel="tag">jdbc</a> <a href="http://stackoverflow.com/questions/tagged/classpath" class="post-tag js-gps-track" title="show questions tagged &#39;classpath&#39;" rel="tag">classpath</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/1525444" title="short permalink to this question" class="short-link" id="link-post-1525444">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/1525444/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/1525444/revisions" title="show all edits to this post">edited <span title="2012-04-15 06:28:02Z" class="relativetime">Apr 15 '12 at 6:28</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/632447/nikhil"><div class="gravatar-wrapper-32"><img src="./How to connect SQLite with Java  - Stack Overflow_files/c20b8918e22479092ce1a639e1e16948" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/632447/nikhil">nikhil</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,520</span><span title="5 gold badges"><span class="badge1"></span><span class="badgecount">5</span></span><span title="26 silver badges"><span class="badge2"></span><span class="badgecount">26</span></span><span title="61 bronze badges"><span class="badge3"></span><span class="badgecount">61</span></span>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2009-10-06 13:02:55Z" class="relativetime">Oct 6 '09 at 13:02</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/131062/rajapandian"><div class="gravatar-wrapper-32"><img src="./How to connect SQLite with Java  - Stack Overflow_files/c5456d26d04f1905de39f018bdb6c253" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/131062/rajapandian">Rajapandian</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">2,132</span><span title="16 gold badges"><span class="badge1"></span><span class="badgecount">16</span></span><span title="49 silver badges"><span class="badge2"></span><span class="badgecount">49</span></span><span title="77 bronze badges"><span class="badge3"></span><span class="badgecount">77</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1525444" class="comments " data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+
+    <tr id="comment-1380542" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">4</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I guess you are not putting SQLite jar in classpath</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/167016/vpram86" title="2933 reputation" class="comment-user">vpram86</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java#comment1380542_1525444"><span title="2009-10-06 13:04:50Z" class="relativetime-clean">Oct 6 '09 at 13:04</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-1525444" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add comment</a>
+    </td>
+</tr>        </tbody></table>
+</div>
+
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								7 Answers
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+        <a href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="1525453"></a>
+<div id="answer-1525453" class="answer accepted-answer" data-answerid="1525453">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="1525453">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">31</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>You need to have a SQLite JDBC driver in your classpath.</p>
+
+<p>ie: <a href="http://www.zentus.com/sqlitejdbc/">http://www.zentus.com/sqlitejdbc/</a></p>
+
+<p>8/1/2012 update since the Zentus website is down:</p>
+
+<p><a href="http://www.xerial.org/trac/Xerial/wiki/SQLiteJDBC">Xerial</a> is an extension of Zentus</p>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/1525453" title="short permalink to this answer" class="short-link" id="link-post-1525453">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/1525453/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/1525453/revisions" title="show all edits to this post">edited <span title="2012-08-01 18:01:12Z" class="relativetime">Aug 1 '12 at 18:01</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2009-10-06 13:04:57Z" class="relativetime">Oct 6 '09 at 13:04</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/84378/reverend-gonzo"><div class="gravatar-wrapper-32"><img src="./How to connect SQLite with Java  - Stack Overflow_files/6245814599dd75d1a9105d0fb0f9ac8a" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/84378/reverend-gonzo">Reverend Gonzo</a><br>
+        <span class="reputation-score" title="reputation score 15319" dir="ltr">15.3k</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="27 silver badges"><span class="badge2"></span><span class="badgecount">27</span></span><span title="57 bronze badges"><span class="badge3"></span><span class="badgecount">57</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-1525453" class="comments " data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="1" data-addlink-html="add comment" data-addlink-disabled="true">
+
+    <tr id="comment-12827150" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">i am using this driver, and works fine. But why it is not compacting database while creating.With FireFox sqlite plugin Database compacted from 11.5MB to 11.3MB. how to do that with java.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/701571/dyapa-srikanth" title="359 reputation" class="comment-user">Dyapa Srikanth</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java#comment12827150_1525453"><span title="2012-04-05 13:16:19Z" class="relativetime-clean">Apr 5 '12 at 13:16</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-13950814" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Dyapa You need to periodically run <code>VACUUM</code>; since JDBC doesn't actually interpret the SQL (for <i>very</i> good reasons) just send it over. Or use a pragma per connection to run in auto-vacuum mode.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/301832/donal-fellows" title="55919 reputation" class="comment-user">Donal Fellows</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java#comment13950814_1525453"><span title="2012-05-24 13:08:41Z" class="relativetime-clean">May 24 '12 at 13:08</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-13967290" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@DonalFellows can u explain how to run VACUUM through java.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/701571/dyapa-srikanth" title="359 reputation" class="comment-user">Dyapa Srikanth</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java#comment13967290_1525453"><span title="2012-05-25 04:01:51Z" class="relativetime-clean">May 25 '12 at 4:01</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-14574586" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">For those experiencing this issue with Tomcat this jar needs to be put into the lib folder for respective Tomcat version.  Tomcat will also need to be restarted.    In the web application, the jar needs to be placed into the WEB-INF lib folder as well.  You don't need to add it to the build path because putting it in the WEB-INF lib folder places it there automatically.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/371077/android-addict" title="1560 reputation" class="comment-user">Android Addict</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java#comment14574586_1525453"><span title="2012-06-20 15:38:02Z" class="relativetime-clean">Jun 20 '12 at 15:38</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-14951511" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@AndroidAddict Thank you bro you saved hours of my time :)</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/1096537/tonytony" title="548 reputation" class="comment-user">tonytony</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java#comment14951511_1525453"><span title="2012-07-05 20:50:19Z" class="relativetime-clean">Jul 5 '12 at 20:50</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-1525453" data-rep="50" data-anon="true" class="comments-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">show <b>1</b> more comment</a>
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk539215967",4).setZone(44) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk539215967"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiY20iOjI5MTEsImNoIjoxMTc4LCJjciI6NTkyNSwiZGkiOiI2ZTM0MmNhMTk2MzA0ODAwYTA0NjcyYmI5ZTcxNjZkNiIsImRtIjoxLCJmYyI6MTAxOTAsImZsIjo3NDcyLCJpcCI6IjEwNS4yMzcuOTguODkiLCJrdyI6ImphdmEsc3FsaXRlLGpkYmMsY2xhc3NwYXRoIiwibnciOjIyLCJwYyI6MCwicHIiOjE2MDQsInJ0IjoxLCJyZiI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jby56YS8iLCJzdCI6ODI3NywidWsiOiJiMTU2YTk2MGIxNzU0NDljOGYxNmViZWFiNmNjNDRlNiIsInpuIjo0NCwidHMiOjE0MDQ3Njg4NjM5NjMsInVyIjoiaHR0cDovL2NhcmVlcnMuc3RhY2tvdmVyZmxvdy5jb20vIn0&s=_s39BHc4t-n87r22Ieobwk1msLU" rel="nofollow" target="_blank" title=""><img src="./How to connect SQLite with Java  - Stack Overflow_files/719b64475d504c6ba9d692a472e2b1be.png" title="" alt="" border="0" width="728" height="90"></a><div class="adzerk-vote-controls" style="display: none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li></ul><a href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" src="./How to connect SQLite with Java  - Stack Overflow_files/i(1).gif"></div>
+  
+<a name="2765549"></a>
+<div id="answer-2765549" class="answer" data-answerid="2765549">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="2765549">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">4</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>If you are using netbeans Download the <a href="http://files.zentus.com/sqlitejdbc/sqlitejdbc-v056.jar" rel="nofollow">sqlitejdbc driver</a>
+Right click the Libraries folder from the Project window and select Add Library ,
+then click on the Create button  enter the Library name (SQLite) and hit OK </p>
+
+<p>You have to add the sqlitejdbc driver to the class path , click on the 
+Add Jar/Folder.. button and select the sqlitejdbc file you've downloaded previously 
+Hit OK and you are ready to go !</p>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/2765549" title="short permalink to this answer" class="short-link" id="link-post-2765549">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/2765549/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2010-05-04 13:13:57Z" class="relativetime">May 4 '10 at 13:13</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/221143/lesce"><div class="gravatar-wrapper-32"><img src="./How to connect SQLite with Java  - Stack Overflow_files/wBk3N.jpg" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/221143/lesce">lesce</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,699</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="10 silver badges"><span class="badge2"></span><span class="badgecount">10</span></span><span title="23 bronze badges"><span class="badge3"></span><span class="badgecount">23</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-2765549" class="comments " data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+
+    <tr id="comment-27851942" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I struggled a lot because of this problem. I am a Java newbie and using Netbeans. It's been a frustration. Finally, your answer saved my day.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/1584507/indigo" title="440 reputation" class="comment-user">Indigo</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java#comment27851942_2765549"><span title="2013-09-18 13:10:37Z" class="relativetime-clean">Sep 18 '13 at 13:10</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 2 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-2765549" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add comment</a>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="6194798"></a>
+<div id="answer-6194798" class="answer" data-answerid="6194798">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="6194798">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">4</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>I'm using Eclipse and I copied your code and got the same error.  I then opened up the project properties-&gt;Java Build Path -&gt; Libraries-&gt;Add External JARs...
+c:\jrun4\lib\sqlitejdbc-v056.jar
+Worked like a charm.  You may need to restart your web server if you've just copied the .jar file.</p>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/6194798" title="short permalink to this answer" class="short-link" id="link-post-6194798">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/6194798/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2011-05-31 23:47:13Z" class="relativetime">May 31 '11 at 23:47</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/778532/meanderingcoder"><div class="gravatar-wrapper-32"><img src="./How to connect SQLite with Java  - Stack Overflow_files/8b6bd059f6341cfb14996ddcf352f6bc" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/778532/meanderingcoder">MeanderingCoder</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">41</span><span title="1 bronze badge"><span class="badge3"></span><span class="badgecount">1</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-6194798" class="comments  dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-6194798" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add comment</a>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="14701976"></a>
+<div id="answer-14701976" class="answer" data-answerid="14701976">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="14701976">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">2</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>Hey i have posted a video tutorial on youtube about this, you can check that and you can find here the sample code :</p>
+
+<p><a href="http://myfundatimemachine.blogspot.in/2012/06/database-connection-to-java-application.html" rel="nofollow">http://myfundatimemachine.blogspot.in/2012/06/database-connection-to-java-application.html</a></p>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/14701976" title="short permalink to this answer" class="short-link" id="link-post-14701976">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/14701976/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-02-05 07:10:35Z" class="relativetime">Feb 5 '13 at 7:10</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1696421/ravi-kiran"><div class="gravatar-wrapper-32"><img src="./How to connect SQLite with Java  - Stack Overflow_files/91eb8e5082a3fe26e4d9f11dfa685a30" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1696421/ravi-kiran">Ravi Kiran</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">135</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="5 bronze badges"><span class="badge3"></span><span class="badgecount">5</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-14701976" class="comments " data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+
+    <tr id="comment-36258600" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Its a lot of irrelevant code to learn about a relatively specific problem. Not saying its a bad video/code, but not specific for this problem.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/236830/davoud-taghawi-nejad" title="2195 reputation" class="comment-user">Davoud Taghawi-Nejad</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java#comment36258600_14701976"><span title="2014-05-12 19:24:38Z" class="relativetime-clean">May 12 at 19:24</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-14701976" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add comment</a>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="10737687"></a>
+<div id="answer-10737687" class="answer" data-answerid="10737687">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="10737687">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">0</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <pre class="default prettyprint prettyprinted"><code><span class="pln">connection </span><span class="pun">=</span><span class="pln"> </span><span class="typ">DriverManager</span><span class="pun">.</span><span class="pln">getConnection</span><span class="pun">(</span><span class="str">"jdbc:sqlite:D:\\testdb.db"</span><span class="pun">);</span></code></pre>
+
+<p>Instead of this put</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pln">connection </span><span class="pun">=</span><span class="pln"> </span><span class="typ">DriverManager</span><span class="pun">.</span><span class="pln">getConnection</span><span class="pun">(</span><span class="str">"jdbc:sqlite:D:\\testdb"</span><span class="pun">);</span></code></pre>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/10737687" title="short permalink to this answer" class="short-link" id="link-post-10737687">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/10737687/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/10737687/revisions" title="show all edits to this post">edited <span title="2012-05-24 13:09:16Z" class="relativetime">May 24 '12 at 13:09</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/301832/donal-fellows"><div class="gravatar-wrapper-32"><img src="./How to connect SQLite with Java  - Stack Overflow_files/965220a70d38e6a29466f44cdb4f804e" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/301832/donal-fellows">Donal Fellows</a><br>
+        <span class="reputation-score" title="reputation score 55919" dir="ltr">55.9k</span><span title="9 gold badges"><span class="badge1"></span><span class="badgecount">9</span></span><span title="54 silver badges"><span class="badge2"></span><span class="badgecount">54</span></span><span title="103 bronze badges"><span class="badge3"></span><span class="badgecount">103</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-05-24 12:39:12Z" class="relativetime">May 24 '12 at 12:39</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1300674/vasanth-kumar"><div class="gravatar-wrapper-32"><img src="./How to connect SQLite with Java  - Stack Overflow_files/9a8e61dfc8a4b5b1de82cd6f1827e0f7" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1300674/vasanth-kumar">Vasanth Kumar</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">27</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="5 bronze badges"><span class="badge3"></span><span class="badgecount">5</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-10737687" class="comments  dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-10737687" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add comment</a>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="17978358"></a>
+<div id="answer-17978358" class="answer" data-answerid="17978358">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="17978358">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">0</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <pre class="default prettyprint prettyprinted"><code><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">sql</span><span class="pun">.</span><span class="typ">Connection</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">sql</span><span class="pun">.</span><span class="typ">DriverManager</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">sql</span><span class="pun">.</span><span class="typ">SQLException</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javax</span><span class="pun">.</span><span class="pln">swing</span><span class="pun">.</span><span class="typ">JOptionPane</span><span class="pun">;</span><span class="pln">   
+
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Connectdatabase</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+        </span><span class="typ">Connection</span><span class="pln"> con </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;</span><span class="pln">
+
+        </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">Connection</span><span class="pln"> </span><span class="typ">ConnecrDb</span><span class="pun">(){</span><span class="pln">
+
+            </span><span class="kwd">try</span><span class="pun">{</span><span class="pln">
+                </span><span class="com">//String dir = System.getProperty("user.dir");</span><span class="pln">
+                </span><span class="typ">Class</span><span class="pun">.</span><span class="pln">forName</span><span class="pun">(</span><span class="str">"org.sqlite.JDBC"</span><span class="pun">);</span><span class="pln">
+                </span><span class="typ">Connection</span><span class="pln"> con </span><span class="pun">=</span><span class="pln"> </span><span class="typ">DriverManager</span><span class="pun">.</span><span class="pln">getConnection</span><span class="pun">(</span><span class="str">"jdbc:sqlite:D:\\testdb.db"</span><span class="pun">);</span><span class="pln">
+                </span><span class="kwd">return</span><span class="pln"> con</span><span class="pun">;</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+            </span><span class="kwd">catch</span><span class="pun">(</span><span class="typ">ClassNotFoundException</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="typ">SQLException</span><span class="pln"> e</span><span class="pun">){</span><span class="pln">
+                </span><span class="typ">JOptionPane</span><span class="pun">.</span><span class="pln">showMessageDialog</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">,</span><span class="str">"Problem with connection of database"</span><span class="pun">);</span><span class="pln">
+                </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="pun">}</span></code></pre>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/17978358" title="short permalink to this answer" class="short-link" id="link-post-17978358">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/17978358/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-07-31 18:42:46Z" class="relativetime">Jul 31 '13 at 18:42</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2446911/deepak-s-gavkar"><div class="gravatar-wrapper-32"><img src="./How to connect SQLite with Java  - Stack Overflow_files/ohtSf.jpg" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2446911/deepak-s-gavkar">Deepak S. Gavkar</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">62</span><span title="9 bronze badges"><span class="badge3"></span><span class="badgecount">9</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-17978358" class="comments  dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-17978358" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add comment</a>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="19398975"></a>
+<div id="answer-19398975" class="answer" data-answerid="19398975">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="19398975">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">0</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <pre class="default prettyprint prettyprinted"><code><span class="pln">    </span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">sql</span><span class="pun">.</span><span class="typ">ResultSet</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">sql</span><span class="pun">.</span><span class="typ">SQLException</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">import</span><span class="pln"> javax</span><span class="pun">.</span><span class="pln">swing</span><span class="pun">.</span><span class="typ">JOptionPane</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">sqlite</span><span class="pun">.</span><span class="typ">SQLiteDataSource</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">sqlite</span><span class="pun">.</span><span class="typ">SQLiteJDBCLoader</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Test</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+        </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> </span><span class="typ">Connected</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="kwd">boolean</span><span class="pln"> initialize </span><span class="pun">=</span><span class="pln"> </span><span class="typ">SQLiteJDBCLoader</span><span class="pun">.</span><span class="pln">initialize</span><span class="pun">();</span><span class="pln">
+
+            </span><span class="typ">SQLiteDataSource</span><span class="pln"> dataSource </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">SQLiteDataSource</span><span class="pun">();</span><span class="pln">
+            dataSource</span><span class="pun">.</span><span class="pln">setUrl</span><span class="pun">(</span><span class="str">"jdbc:sqlite:/home/users.sqlite"</span><span class="pun">);</span><span class="pln">
+            </span><span class="kwd">int</span><span class="pln"> i</span><span class="pun">=</span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+            </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                </span><span class="typ">ResultSet</span><span class="pln"> executeQuery </span><span class="pun">=</span><span class="pln"> dataSource</span><span class="pun">.</span><span class="pln">getConnection</span><span class="pun">()</span><span class="pln">
+                        </span><span class="pun">.</span><span class="pln">createStatement</span><span class="pun">().</span><span class="pln">executeQuery</span><span class="pun">(</span><span class="str">"select * from \"Table\""</span><span class="pun">);</span><span class="pln">
+                </span><span class="kwd">while</span><span class="pln"> </span><span class="pun">(</span><span class="pln">executeQuery</span><span class="pun">.</span><span class="kwd">next</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+i</span><span class="pun">++;</span><span class="pln">
+                    </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"out: "</span><span class="pun">+</span><span class="pln">executeQuery</span><span class="pun">.</span><span class="pln">getMetaData</span><span class="pun">().</span><span class="pln">getColumnLabel</span><span class="pun">(</span><span class="pln">i</span><span class="pun">));</span><span class="pln">
+
+                </span><span class="pun">}</span><span class="pln">
+
+
+
+            </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">SQLException</span><span class="pln"> ex</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                </span><span class="typ">JOptionPane</span><span class="pun">.</span><span class="pln">showMessageDialog</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> ex</span><span class="pun">);</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+
+            </span><span class="kwd">return</span><span class="pln"> initialize</span><span class="pun">;</span><span class="pln">
+
+        </span><span class="pun">}</span></code></pre>
+
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/19398975" title="short permalink to this answer" class="short-link" id="link-post-19398975">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/19398975/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/19398975/revisions" title="show all edits to this post">edited <span title="2013-10-16 09:02:57Z" class="relativetime">Oct 16 '13 at 9:02</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-10-16 08:53:04Z" class="relativetime">Oct 16 '13 at 8:53</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2402433/user2402433"><div class="gravatar-wrapper-32"><img src="./How to connect SQLite with Java  - Stack Overflow_files/258875c5b3afbe15c7166c022d413eb3" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2402433/user2402433">user2402433</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1</span><span title="1 bronze badge"><span class="badge3"></span><span class="badgecount">1</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-19398975" class="comments  dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-19398975" data-rep="50" data-anon="true" class="comments-link disabled-link" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add comment</a>
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="http://stackoverflow.com/questions/1525444/answer/submit" method="post" class="post-form">
+						    <input type="hidden" id="post-id" value="1525444">
+                            <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
+							<h2 class="space">Your Answer</h2>
+
+
+
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+         
+        prepareEditor({
+            heartbeatType: 'answer',
+            bindNavPrevention: true,
+            postfix: "",
+            onDemand: true,
+            discardSelector: ".discard-answer"
+            ,immediatelyShowMarkdownHelp:true
+        });
+        
+
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li id="wmd-bold-button" class="wmd-button" style="left: 0px;"><span style="background-position: 0px -20px;"></span></li><li id="wmd-italic-button" class="wmd-button" style="left: 25px;"><span style="background-position: -20px -20px;"></span></li><li id="wmd-spacer1" class="wmd-spacer" style="left: 50px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-link-button" class="wmd-button" style="left: 75px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-quote-button" class="wmd-button" style="left: 100px;"><span style="background-position: -60px -20px;"></span></li><li id="wmd-code-button" class="wmd-button" style="left: 125px;"><span style="background-position: -80px -20px;"></span></li><li id="wmd-image-button" class="wmd-button" style="left: 150px;"><span style="background-position: -100px -20px;"></span></li><li id="wmd-spacer2" class="wmd-spacer" style="left: 175px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-olist-button" class="wmd-button" style="left: 200px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-ulist-button" class="wmd-button" style="left: 225px;"><span style="background-position: -140px -20px;"></span></li><li id="wmd-heading-button" class="wmd-button" style="left: 250px;"><span style="background-position: -160px -20px;"></span></li><li id="wmd-hr-button" class="wmd-button" style="left: 275px;"><span style="background-position: -180px -20px;"></span></li><li id="wmd-spacer3" class="wmd-spacer" style="left: 300px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-undo-button" class="wmd-button" style="left: 325px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-redo-button" class="wmd-button" style="left: 350px;"><span style="background-position: -220px -20px;"></span></li></ul></div>
+            <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        </div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="2950f663577415880303a059731e2b53">
+        <input id="author" name="author" type="text">
+    </div>
+</div>
+							<div style="position: relative;">
+								
+            <div class="form-item new-post-login">
+        
+                <div class="new-login-form">
+                    <div class="new-login-left">
+                        <h3>Sign up or <a id="login-link" href="http://stackoverflow.com/users/login?returnurl=%2fquestions%2f1525444%2fhow-to-connect-sqlite-with-java%23new-answer">log in</a></h3>
+                        <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+                        <div class="preferred-login google-login">
+                            <p><span class="icon"></span><span>Sign up using Google</span></p>
+                        </div>
+                        <div class="preferred-login facebook-login">
+                            <p><span class="icon"></span><span>Sign up using Facebook</span></p>
+                        </div>
+                        <div class="preferred-login stackexchange-login">
+                            <p><span class="icon"></span><span>Sign up using Stack Exchange</span></p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="manual-openid" class="manual-openid">
+                    <input type="hidden" name="use-facebook" class="use-facebook" value="false">
+                    <input type="button" class="submit-openid" value="Submit" style="display:none">
+                    <div class="new-login-right">
+                                <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+                    <script>
+                StackExchange.ready(function () {
+                    StackExchange.helpers.bindHelpOverlayEvents($('.vm input'));
+                });
+            </script>
+            <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="text" size="30" maxlength="100" value="" tabindex="106">
+                    <span class="edit-field-overlay">required, but not shown</span>
+                </div>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', '%2fquestions%2f1525444%2fhow-to-connect-sqlite-with-java%23new-answer');
+                    }
+                );
+            </script>
+            <noscript>
+                        &lt;h3&gt;Post as a guest&lt;/h3&gt;
+    &lt;div class="form-item"&gt;
+        &lt;table&gt;
+        &lt;tr&gt;
+                    &lt;script&gt;
+                StackExchange.ready(function () {
+                    StackExchange.helpers.bindHelpOverlayEvents($('.vm input'));
+                });
+            &lt;/script&gt;
+            &lt;td class="vm"&gt;
+                &lt;div&gt;
+                    &lt;label for="display-name"&gt;Name&lt;/label&gt;
+                    &lt;input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105"&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;label for="m-address"&gt;Email&lt;/label&gt;
+                    &lt;input id="m-address" name="m-address" type="text" size="30" maxlength="100" value="" tabindex="106"&gt;
+                    &lt;span class="edit-field-overlay"&gt;required, but not shown&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+
+            </noscript>
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+									<a href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java#" class="discard-answer dno">discard</a>
+
+<p class="privacy-policy-agreement">
+By posting your answer, you agree to the <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">privacy policy</a> and <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">terms of service</a>.</p>
+<input type="hidden" name="legalLinksShown" value="1">								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/java" class="post-tag" title="show questions tagged &#39;java&#39;" rel="tag">java</a> <a href="http://stackoverflow.com/questions/tagged/sqlite" class="post-tag" title="" rel="tag">sqlite</a> <a href="http://stackoverflow.com/questions/tagged/jdbc" class="post-tag" title="show questions tagged &#39;jdbc&#39;" rel="tag">jdbc</a> <a href="http://stackoverflow.com/questions/tagged/classpath" class="post-tag" title="show questions tagged &#39;classpath&#39;" rel="tag">classpath</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2009-10-06 13:02:55Z"><b>4 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>62488 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/1525444/how-to-connect-sqlite-with-java?lastactivity" class="lastactivity-link" title="2013-10-16 09:02:57Z">8 months ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk314331811",[17,2221]).setZone(45) ; });                    
+            </script>
+              
+        <div id="hireme" class="flat-orange looking">  <a href="http://careers.stackoverflow.com/?a=JOM" class="top" target="_blank"> <span>Looking for a job?</span> </a> <ul class="jobs"> <li> <a href="http://careers.stackoverflow.com/jobs/59351/unix-systems-administrator-oracle-south-africa?a=1anTQR3Lq" target="_blank" title="Unix systems administrator at Oracle South Africa. Click to learn more."> Unix systems administrator<br> <span class="company">Oracle South Africa</span> <span class="location">Cape Town, South Africa</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/60443/software-development-engineer-ec2-operational-amazon?a=1bIqXY3EQ" target="_blank" title="Software Development Engineer - EC2 Operational Tools for Excellence Team at Amazon. Click to learn more."> Software Development Engineer - EC2 Operational Tools for…<br> <span class="company">Amazon</span> <span class="location">Cape Town, RSA / relocation</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/60009/information-technology-it-manager-african-institute-for?a=1bbCjfHcQ" target="_blank" title="Information Technology (IT) Manager at African Institute for Mathematical Sciences (AIMS). Click to learn more."> Information Technology (IT) Manager<br> <span class="company">African Institute for…</span> <span class="location">Cape Town, South Africa</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/61065/software-development-engineer-mobile-amazon-amazon?a=1ctrP5bos" target="_blank" title="Software Development Engineer, Mobile - Amazon Local at Amazon. Click to learn more."> Software Development Engineer, Mobile - Amazon Local<br> <span class="company">Amazon</span> <span class="location">Seattle / relocation</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/61400/software-developer-3d-processing-computer-ronin-gms?a=1cSNwBASA" target="_blank" title="Software Developer – 3D Processing, Computer Vision, IoT Sensor Networks at Ronin GMS. Click to learn more."> Software Developer – 3D Processing, Computer Vision, IoT…<br> <span class="company">Ronin GMS</span> <span class="location">Johannesburg, South Africa</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/60346/software-development-engineer-ec2-instance-amazon?a=1bB6drhMA" target="_blank" title="Software Development Engineer - EC2 Instance Placement Team at Amazon. Click to learn more."> Software Development Engineer - EC2 Instance Placement Team<br> <span class="company">Amazon</span> <span class="location">Cape Town, RSA / relocation</span> </a> </li> </ul> <img alt="" class="impression" src="./How to connect SQLite with Java  - Stack Overflow_files/1bIqXY3EQ-1anTQR3Lq-1bbCjfHcQ-1ctrP5bos-1cSNwBASA-1bB6drhMA-JOM" style="display:none"></div>
+			<div class="module" id="chat-feature">
+    
+
+    
+<h4><a href="http://chat.stackoverflow.com/" id="h-chat-link" title="103 users active in 41 rooms the last 60 minutes">103 People Chatting</a></h4>
+
+<div class="related" id="ad502-rooms"><div class="ad502-room"><h3 class="ad502-room-h3"><span class="ad502-room-title" title="JavaScript:: Sponsored By Oprah Winfrey"><a href="http://chat.stackoverflow.com/rooms/17">JavaScript:: Sponsored By Oprah Winfrey</a></span></h3><span title="2014-07-07 19:38:41Z" class="ad502-last-message">1 hour ago - <a href="http://chat.stackoverflow.com/users/338665">ircmaxell</a></span><br><div class="ad502-users"><a href="http://chat.stackoverflow.com/users/338665"><img height="23" width="23" title="ircmaxell: 1 hour ago" src="./How to connect SQLite with Java  - Stack Overflow_files/a32a990c257433d3252980e059341546"></a><a href="http://chat.stackoverflow.com/users/871050"><img height="23" width="23" title="Second Rikudo: 1 hour ago" src="./How to connect SQLite with Java  - Stack Overflow_files/a7a50a9492be737b0c012a839338272a"></a><a href="http://chat.stackoverflow.com/users/1839506"><img height="23" width="23" title="Caprica Six: 1 hour ago" src="./How to connect SQLite with Java  - Stack Overflow_files/Sej2t.jpg"></a><a href="http://chat.stackoverflow.com/users/829835"><img height="23" width="23" title="rlemon: 1 hour ago" src="./How to connect SQLite with Java  - Stack Overflow_files/YYo1x.jpg"></a><a href="http://chat.stackoverflow.com/users/785745"><img height="23" width="23" title="Kendall Frey: 1 hour ago" src="./How to connect SQLite with Java  - Stack Overflow_files/f9fc3249a341a64ee2721637915cd301"></a><a href="http://chat.stackoverflow.com/users/313414"><img height="23" width="23" title="Tom W: 2 hours ago" src="./How to connect SQLite with Java  - Stack Overflow_files/fkrds.jpg"></a><a href="http://chat.stackoverflow.com/users/1408759"><img height="23" width="23" title="Nick Dugger: 2 hours ago" src="./How to connect SQLite with Java  - Stack Overflow_files/Ie7la.jpg"></a></div></div><div class="ad502-room"><h3 class="ad502-room-h3"><span class="ad502-room-title" title="Lounge&lt;C++&gt;"><a href="http://chat.stackoverflow.com/rooms/10">Lounge&lt;C++&gt;</a></span></h3><span title="2014-07-07 19:39:28Z" class="ad502-last-message">1 hour ago - <a href="http://chat.stackoverflow.com/users/493122">Jefffrey</a></span><br><div class="ad502-users"><a href="http://chat.stackoverflow.com/users/298661"><img height="23" width="23" title="Puppy: 1 hour ago" src="./How to connect SQLite with Java  - Stack Overflow_files/3445f56229632874a44596385ed6d40c"></a><a href="http://chat.stackoverflow.com/users/174614"><img height="23" width="23" title="Tony The Lion: 1 hour ago" src="./How to connect SQLite with Java  - Stack Overflow_files/ca9a84fecd3f2fea333e8a1ef16edf98"></a><a href="http://chat.stackoverflow.com/users/500104"><img height="23" width="23" title="Xeo: 1 hour ago" src="./How to connect SQLite with Java  - Stack Overflow_files/eb538603c2b80ea703e92abf5b45c791"></a><a href="http://chat.stackoverflow.com/users/493122"><img height="23" width="23" title="Jefffrey: 1 hour ago" src="./How to connect SQLite with Java  - Stack Overflow_files/8b7b64f33f32fe4fe713486feff4fda6"></a><a href="http://chat.stackoverflow.com/users/332733"><img height="23" width="23" title="Mgetz: 1 hour ago" src="./How to connect SQLite with Java  - Stack Overflow_files/BR7yE.jpg"></a><a href="http://chat.stackoverflow.com/users/16102"><img height="23" width="23" title="Cat Plus Plus: 1 hour ago" src="./How to connect SQLite with Java  - Stack Overflow_files/0c4f4df702b23c8983f57d7113e809c8"></a><a href="http://chat.stackoverflow.com/users/71141"><img height="23" width="23" title="Etienne de Martel: 1 hour ago" src="./How to connect SQLite with Java  - Stack Overflow_files/e1f5d1bd28627ad2f5a9b47ef63a2dc8"></a></div></div></div>
+<script>
+// <!--
+    StackExchange.ready(
+    function () {
+        var options = {
+            chatUrl: 'http://chat.stackoverflow.com',
+            reloadUrl: '/api/recent-chat',
+            preloadData: {"activeUsers":103,"activeRooms":41,"rooms":[{"name":"JavaScript:: Sponsored By Oprah Winfrey","id":17,"lastPost":1404761921,"posts":1981554,"users":[{"name":"ircmaxell","id":338665,"emailhash":"a32a990c257433d3252980e059341546","lastPost":1404761922},{"name":"Second Rikudo","id":871050,"emailhash":"a7a50a9492be737b0c012a839338272a","lastPost":1404761897},{"name":"Caprica Six","id":1839506,"emailhash":"!http://i.stack.imgur.com/Sej2t.jpg?s=128\u0026g=1","lastPost":1404761730},{"name":"rlemon","id":829835,"emailhash":"!http://i.stack.imgur.com/YYo1x.jpg?s=128\u0026g=1","lastPost":1404761728},{"name":"Kendall Frey","id":785745,"emailhash":"f9fc3249a341a64ee2721637915cd301","lastPost":1404761700},{"name":"Tom W","id":313414,"emailhash":"!http://i.stack.imgur.com/fkrds.jpg?s=128\u0026g=1","lastPost":1404761453},{"name":"Nick Dugger","id":1408759,"emailhash":"!http://i.stack.imgur.com/Ie7la.jpg?s=128\u0026g=1","lastPost":1404761248}],"messages":[{"date":1404761921,"user":"ircmaxell","userid":338665}],"singleImage":false,"tags":["ecmascript","javascript","rude","truth","undefined"]},{"name":"Lounge\u003cC++\u003e","id":10,"lastPost":1404761968,"posts":2905825,"users":[{"name":"Puppy","id":298661,"emailhash":"3445f56229632874a44596385ed6d40c","lastPost":1404761946},{"name":"Tony The Lion","id":174614,"emailhash":"ca9a84fecd3f2fea333e8a1ef16edf98","lastPost":1404761937},{"name":"Xeo","id":500104,"emailhash":"eb538603c2b80ea703e92abf5b45c791","lastPost":1404761911},{"name":"Jefffrey","id":493122,"emailhash":"8b7b64f33f32fe4fe713486feff4fda6","lastPost":1404761908},{"name":"Mgetz","id":332733,"emailhash":"!http://i.stack.imgur.com/BR7yE.jpg?s=128\u0026g=1","lastPost":1404761887},{"name":"Cat Plus Plus","id":16102,"emailhash":"0c4f4df702b23c8983f57d7113e809c8","lastPost":1404761854},{"name":"Etienne de Martel","id":71141,"emailhash":"e1f5d1bd28627ad2f5a9b47ef63a2dc8","lastPost":1404761766}],"messages":[{"date":1404761968,"user":"Jefffrey","userid":493122}],"singleImage":false,"tags":["c++","c++11","c++1y","c++-faq"]}]} 
+        };
+
+        StackExchange.chatAd.init(options);
+    });
+// -->
+</script>
+
+</div>  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/20723025?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/20723025/sqlite-database-connection-java-lang-classnotfoundexception-org-sqlite-jdbc?lq=1" class="question-hyperlink">sqlite database connection: java.Lang.ClassNotFoundException: org.sqlite.JDBC</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/21641398?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/21641398/classnotfoundexception-org-sqlite-jdbc?lq=1" class="question-hyperlink">ClassNotFoundException: org.sqlite.JDBC</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/9274649?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/9274649/sqlite-connection-string-configuration?lq=1" class="question-hyperlink">SQLite Connection String Configuration</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/8098683?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/8098683/access-sqlite-database-from-non-android-environment?lq=1" class="question-hyperlink">Access SQLite database from non-android environment</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/14214168?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/14214168/sqlite-manager-add-on-to-firefox?lq=1" class="question-hyperlink">SQLite manager, Add on to FireFox</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/22794481?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">-1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/22794481/inserting-a-data-in-sqlite-from-a-java-servlet?lq=1" class="question-hyperlink">Inserting a data in sqlite from a Java Servlet</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/22417968?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/22417968/sqlite-in-java-not-outputting?lq=1" class="question-hyperlink">sqlite in java not outputting</a>
+</div>			</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/4371411?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/4371411/sqlite-database-connection-problem-java?rq=1" class="question-hyperlink">SQLite database connection problem Java</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/5076754?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/5076754/how-to-read-an-sqlite-database-file-in-java-package?rq=1" class="question-hyperlink">How to read an sqlite database file in Java? (Package)</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/7234117?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">-1
+    </div>
+</a><a href="http://stackoverflow.com/questions/7234117/jdbc-to-my-sql-connectivity?rq=1" class="question-hyperlink">jdbc to my sql connectivity</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/12385504?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/12385504/connect-to-sqlite-database-using-java?rq=1" class="question-hyperlink">connect to Sqlite database using java</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/12399794?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/12399794/phonegap-native-plugin-communicate-with-sqlite-database?rq=1" class="question-hyperlink">Phonegap native plugin communicate with sqlite database</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/12831876?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/12831876/creating-jdbc-connections-outside-the-dao?rq=1" class="question-hyperlink">Creating JDBC Connections Outside The DAO</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/18166456?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/18166456/java-sql-query-not-returning-anything-at-all?rq=1" class="question-hyperlink">(Java) SQL Query not returning anything at all</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/19076267?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">-2
+    </div>
+</a><a href="http://stackoverflow.com/questions/19076267/error-for-connecting-java-to-sql-server?rq=1" class="question-hyperlink">Error for connecting Java To SQL Server</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/20129128?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/20129128/java-multithreading-and-sqlite?rq=1" class="question-hyperlink">java multithreading and sqlite</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/20635720?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/20635720/java-sqlite-another-classnotfoundexception?rq=1" class="question-hyperlink">Java &amp; SQLite - another ClassNotFoundexception</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/24474/phd-in-europe-without-scholarship-from-non-european-homeland" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    PhD in Europe without scholarship from non-European homeland
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-askubuntu" title="Ask Ubuntu"></div><a href="http://askubuntu.com/questions/492806/how-can-i-fetch-random-words-from-an-electronic-dictionary-database" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:89 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I fetch random words from an electronic dictionary database?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/60829/why-does-the-weasleys-clock-have-a-dentist-setting" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why does the Weasleys' clock have a dentist setting?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/858821/sum-of-this-series" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Sum of this series
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/141211/removing-blank-spaces-and-tabs-from-line-without-messing-with-line-endings" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Removing blank spaces and tabs from line without messing with line endings
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/859044/how-does-this-discontinuity-occur-in-evaluating-a-nested-square-root" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How does this discontinuity occur in evaluating a nested square root?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/42013/are-there-roleplaying-games-where-your-race-levels-up-separately-from-your-class" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are there roleplaying games where your race levels up separately from your class?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/141190/ifconfig-a-in-a-shell-script" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    ifconfig -a in a shell script
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-joomla" title="Joomla Stack Exchange"></div><a href="http://joomla.stackexchange.com/questions/2513/use-html-tag-to-bold-only-some-words-of-a-menu-item" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:555 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Use HTML tag to bold only some words of a menu item
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/33059/draw-with-your-cpu" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Draw with your cpu
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-music" title="Musical Practice &amp; Performance Stack Exchange"></div><a href="http://music.stackexchange.com/questions/20795/alternate-picking-vs-down-picking" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:240 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Alternate picking vs down picking
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-pm" title="Project Management Stack Exchange"></div><a href="http://pm.stackexchange.com/questions/11878/having-problems-within-development-team-re-approach" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:208 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Having problems within development team re approach
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/42008/what-happens-when-an-inquisitors-alignment-changes" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What happens when an Inquisitor's alignment changes?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-gaming" title="Arqade"></div><a href="http://gaming.stackexchange.com/questions/175070/why-did-a-creeper-start-to-explode-and-suddenly-stop" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:41 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why did a creeper start to explode and suddenly stop?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-gamedev" title="Game Development Stack Exchange"></div><a href="http://gamedev.stackexchange.com/questions/79861/dealing-with-multiple-licenses" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:53 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Dealing with multiple licenses
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-gaming" title="Arqade"></div><a href="http://gaming.stackexchange.com/questions/175052/does-the-world-of-warcraft-character-boost-upgrade-both-professions" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:41 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does the World of Warcraft character boost upgrade both professions?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-apple" title="Ask Different"></div><a href="http://apple.stackexchange.com/questions/137209/restore-macbook-pro-backup-to-a-mac-mini" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:118 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Restore MacBook Pro backup to a Mac Mini?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/28219/best-course-of-action-when-out-of-my-depth-in-developer-role" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Best course of action when out of my depth in developer role
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/24487/must-i-reference-resources-for-definitions-i-express-with-my-own-words" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Must I reference resources for definitions I express with my own words?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/24608241/why-cant-you-add-an-int-and-a-char-in-some-cases" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why can't you add an int and a char in some cases?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/42033/was-i-out-of-line" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Was I out of Line?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-space" title="Space Exploration Stack Exchange"></div><a href="http://space.stackexchange.com/questions/4936/could-the-hubble-hst-be-saved-by-docking-with-the-iss" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:508 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Could the Hubble HST be saved by docking with the ISS?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/60773/movie-about-gene-therapy-and-genetics-based-jobs" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Movie about gene therapy and genetics-based jobs
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/858978/lamport-claims-there-is-an-error-in-kelleys-proof-of-the-schroeder-bernstein-th" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Lamport claims there is an error in Kelley's proof of the Schroeder-Bernstein theorem. What is it?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/1525444" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/1525444/ivc/ed55');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/1525444/ivc/ed55" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript><div style="display:none" id="prettify-lang">default</div></div>
+
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                        <a href="http://stackoverflow.com/help/badges">badges</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="professional system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems.">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="Information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (14)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="professional graphic designers and non-designers trying to do their own graphic design">Graphic Design</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (10)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2014 stack exchange inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2014.7.3.1691
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled&lt;img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('java,sqlite,jdbc,classpath');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');        
+        
+        ga('set', 'dimension2', '|java|sqlite|jdbc|classpath|');         
+        ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>        
+    
+    
+</body></html>
