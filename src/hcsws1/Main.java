@@ -9,7 +9,9 @@ package hcsws1;
  *
  * @author venolin
  */
-//import java.awt.Cursor;
+
+import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
@@ -30,6 +32,7 @@ public class Main extends JFrame {
    
    JPanel mainPanel;
    
+   
    JMenuBar menuBar;
    JMenu menu;
    JMenuItem menuItem;
@@ -43,20 +46,46 @@ public class Main extends JFrame {
  
    JTextArea outputArea;
    JScrollPane sp;
-   JProgressBar progressBar;
 
    String dir;
    String query;
-   //int progress;
+   int progress;
    
   
    String csvFilename = "output.csv";
 
+   
+   JProgressBar progressBar;   
+   class MeaningOfLifeFinder extends SwingWorker<Integer, Object> { //modifies the SwingWorker class
+       
+        @Override
+       public Integer doInBackground() {
+           beginButton.setEnabled(false);
+           setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+           
+           
+          
+           
+           
+           return getFileList();
+           
+       }
 
-public void getFileList() {
+        @Override
+       protected void done() { //this runs when the background task completes. done() is a SwingWorker keyword
+           try {
+               beginButton.setEnabled(true);
+               setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+           } catch (Exception ignore) {
+           }
+       }
+   }
+  
 
-//    beginButton.setEnabled(false);
-//    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+   
+public Integer getFileList() {
+
+    
     
 //    done = false;
 //    task = new Task();
@@ -76,8 +105,7 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
     }
 });
 
-progressBar = new JProgressBar(0, listOfFiles.length -1);
-mainPanel.add(progressBar);
+    progressBar.setMaximum(listOfFiles.length - 1);
 
     for (int i = 0; i < listOfFiles.length; i++) {
       if (listOfFiles[i].isFile()) {
@@ -85,16 +113,19 @@ mainPanel.add(progressBar);
 
         conn(dir + listOfFiles[i].getName(),query,listOfFiles[i].getName());
         databaseCount+=1;
+        
+        progressBar.setValue(i);
+        progressBar.setStringPainted(true);
 //        System.out.println(i);
       }
 //      else if (listOfFiles[i].isDirectory()) {
 //        System.out.println("Directory " + listOfFiles[i].getName());
 //      }  
       
-     progressBar.setValue(i);
-     progressBar.setStringPainted(true);
+     
      
     }
+     return databaseCount;
      
     }
 
@@ -155,7 +186,10 @@ mainPanel.add(progressBar);
 //                    writer.append('\n');
                 
                 outputArea.append(resultSet.getString(i) + ",");
+                
+                
            }
+            
 //                outputArea.append("'" + resultSet.getString(rsmd.getColumnCount()) + "'" + ");");
 //                outputArea.append(System.getProperty("line.separator"));
           }
@@ -182,7 +216,7 @@ mainPanel.add(progressBar);
     }
    public Main(){
      mainPanel = new JPanel();
-     
+         
      menuBar = new JMenuBar();
      
      
@@ -195,7 +229,7 @@ mainPanel.add(progressBar);
      outputArea = new JTextArea(20,60);
      sp = new JScrollPane(outputArea);
           
-     
+     progressBar = new JProgressBar();
      
          
      //contextPopup = new JPopupMenu();
@@ -240,15 +274,16 @@ mainPanel.add(progressBar);
      
      setJMenuBar(menuBar);
      
+     
      mainPanel.add(dirLabel);
      mainPanel.add(dirText);
      mainPanel.add(mainLabel);
      mainPanel.add(queryText);
      mainPanel.add(beginButton);
-     mainPanel.add(sp);
+     mainPanel.add(sp);     
+            
+     this.add(progressBar, BorderLayout.PAGE_END); //JFrame is the highest level container followed by JPanel. Self reference to the active JFrame using the keyword 'this'.
      
-         
-
      this.add(mainPanel);
 
      menuItem.addActionListener(new ActionListener() {
@@ -262,7 +297,15 @@ mainPanel.add(progressBar);
             outputArea.setText("");
             dir = dirText.getText();
             query = queryText.getText();
-            getFileList();
+            //getFileList();
+           
+            
+            
+            
+            (new MeaningOfLifeFinder()).execute();
+           
+            
+            
 //            conn(dir,query);
             
          }
@@ -293,9 +336,9 @@ mainPanel.add(progressBar);
     public static void main(String[] args) {
         // TODO code application logic here
         Main first = new Main();
-        first.setResizable(true);
+        first.setResizable(false);
         first.setTitle("HCSWS Multiple Database Querier V1.1");
-        first.setSize(790, 396);
+        first.setSize(790, 470);
         first.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         first.setVisible(true);
     
