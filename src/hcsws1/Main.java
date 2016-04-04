@@ -22,6 +22,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.util.Properties;
 import javax.swing.SwingWorker;
 
         
@@ -32,9 +33,10 @@ public class Main extends JFrame {
    
    JPanel mainPanel;
    
-   
+   //Menu Objects
    JMenuBar menuBar;
-   JMenu menu;
+   JMenu menu,submenu;
+   JRadioButtonMenuItem rbMenuItem;
    JMenuItem menuItem;
    
    JButton beginButton;
@@ -46,17 +48,27 @@ public class Main extends JFrame {
  
    JTextArea outputArea;
    JScrollPane sp;
+   JProgressBar progressBar;  
 
-   String dir;
+   //Variables
+   
    String query;
-   int progress;
-   
-  
    String csvFilename = "output.csv";
-
+   //String configData = "test";
    
-   JProgressBar progressBar;   
-   class MeaningOfLifeFinder extends SwingWorker<Integer, Object> { //modifies the SwingWorker class
+   //config.properties Variables
+   //Variables assigned ONLY for reference purposes. Variables are not necessary as properties object decared below may be referenced directly
+   public static String dir = "C:/NortechSystems/data/";
+   public static String theme = "java";
+   
+   public static Properties defaultProps = new Properties();
+   
+   int progress;
+
+    
+   
+    
+   class BackgroundProcess extends SwingWorker<Integer, Object> { //modifies the SwingWorker class
        
         @Override
        public Integer doInBackground() {
@@ -222,12 +234,14 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
      
      
      beginButton = new JButton("Begin");
-     dirLabel = new JLabel("Enter directory here:",JLabel.LEFT);
-     mainLabel = new JLabel("Enter query here:",JLabel.LEFT);
-     queryText = new JTextField("SELECT SiteName,(SELECT COUNT(*) FROM Groups WHERE GroupType=1) AS [EntranceCounters],(SELECT COUNT(*) FROM Groups WHERE GroupType=0) AS [FlowCounters],(SELECT COUNT(*) FROM Groups WHERE GroupType=3) AS [CrossOverCounters],(SELECT COUNT(*) FROM Groups WHERE GroupType=2) AS [InterLevelCounters],(SELECT COUNT(*) FROM Groups WHERE GroupType=-1) AS [Undefined] FROM SiteInfo",20);
-     dirText = new JTextField("C:/NortechSystems/data/",20);
-     outputArea = new JTextArea(20,60);
+     dirLabel = new JLabel("DB Directory:",JLabel.LEFT);
+     mainLabel = new JLabel("Query:",JLabel.LEFT);
+     queryText = new JTextField("SELECT SiteName,(SELECT COUNT(*) FROM Groups WHERE GroupType=1) AS [EntranceCounters],(SELECT COUNT(*) FROM Groups WHERE GroupType=0) AS [FlowCounters],(SELECT COUNT(*) FROM Groups WHERE GroupType=3) AS [CrossOverCounters],(SELECT COUNT(*) FROM Groups WHERE GroupType=2) AS [InterLevelCounters] FROM SiteInfo",20);
+     dirText = new JTextField(dir,20);
+     outputArea = new JTextArea(20,59);
      sp = new JScrollPane(outputArea);
+     
+    
           
      progressBar = new JProgressBar();
      
@@ -256,6 +270,65 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
          }
      });
      
+      menu = new JMenu("Settings");
+     menu.setMnemonic(KeyEvent.VK_S);
+     menu.getAccessibleContext().setAccessibleDescription(
+       "venTest");
+     menuBar.add(menu);
+     
+          
+     //menu.addSeparator();
+        submenu = new JMenu("Theme");
+        submenu.setMnemonic(KeyEvent.VK_S);
+        menu.add(submenu);
+    
+        ButtonGroup group = new ButtonGroup();
+        
+        rbMenuItem = new JRadioButtonMenuItem("Java");
+        
+        if (defaultProps.getProperty("theme").equals("java")) {
+           rbMenuItem.setSelected(true);
+           
+        }      
+        
+        rbMenuItem.setMnemonic(KeyEvent.VK_R);
+        group.add(rbMenuItem);
+        submenu.add(rbMenuItem);
+        
+        rbMenuItem.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+           JOptionPane.showMessageDialog(mainPanel,"Configuration saved. Please restart the app for the changes to take effect.","Restart required",JOptionPane.PLAIN_MESSAGE);
+            theme = "java";
+            defaultProps.setProperty("theme", "java");
+           writeToConfiguration();
+            //write to configuration file here
+         }
+        });
+        
+        
+        rbMenuItem = new JRadioButtonMenuItem("System");
+        
+        if (defaultProps.getProperty("theme").equals("system")) {
+           rbMenuItem.setSelected(true);
+           
+        }  
+        
+        rbMenuItem.setMnemonic(KeyEvent.VK_R);
+        group.add(rbMenuItem);
+        submenu.add(rbMenuItem);
+        
+        rbMenuItem.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+           JOptionPane.showMessageDialog(mainPanel,"Configuration saved. Please restart the app for the changes to take effect.","Restart required",JOptionPane.PLAIN_MESSAGE);
+           theme = "system";
+           defaultProps.setProperty("theme", "system");
+           writeToConfiguration();
+           
+           
+           //write to configuration file here
+         }
+        });
+        
       menu = new JMenu("Help");
      menu.setMnemonic(KeyEvent.VK_H);
      menu.getAccessibleContext().setAccessibleDescription(
@@ -266,7 +339,7 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
       menuItem = new JMenuItem("About",
                          KeyEvent.VK_T);
      menuItem.setAccelerator(KeyStroke.getKeyStroke(
-        KeyEvent.VK_2, ActionEvent.ALT_MASK));
+        KeyEvent.VK_3, ActionEvent.ALT_MASK));
      menuItem.getAccessibleContext().setAccessibleDescription(
         "This doesn't really do anything");
      menu.add(menuItem);
@@ -281,14 +354,15 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
      mainPanel.add(queryText);
      mainPanel.add(beginButton);
      mainPanel.add(sp);     
-            
+     
+     
      this.add(progressBar, BorderLayout.PAGE_END); //JFrame is the highest level container followed by JPanel. Self reference to the active JFrame using the keyword 'this'.
      
      this.add(mainPanel);
 
      menuItem.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-           JOptionPane.showMessageDialog(mainPanel,"Creators\nWezi Kauleza\nVenolin Naidoo\n\n10/09/2014\nNortech International (Pty) Ltd.","About",JOptionPane.PLAIN_MESSAGE);
+           JOptionPane.showMessageDialog(mainPanel,"<html><u>Authors</u></html>\nWezi Kauleza\nVenolin Naidoo (venolin1@gmail.com)\n\n10/09/2014\nThis application makes use of an open source library created by The SQLite Consortium.","About",JOptionPane.PLAIN_MESSAGE); //html used to format text in JOptionPane
          }
      });
      
@@ -302,7 +376,7 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
             
             
             
-            (new MeaningOfLifeFinder()).execute();
+            (new BackgroundProcess()).execute();
            
             
             
@@ -332,13 +406,55 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
     /**
      * @param args the command line arguments
      */
+   
+   public static void changeThemeToSystem() {
+       
+       
+//           SwingUtilities.updateComponentTreeUI(frame); //Code may be used to refresh theme without closing and reopening app, but impractical
+//           frame.pack();
+       
+      try {
+            // Set System L&F
+        UIManager.setLookAndFeel(
+            UIManager.getSystemLookAndFeelClassName());
+        } 
+        catch (UnsupportedLookAndFeelException e) {
+       // handle exception
+        }
+        catch (ClassNotFoundException e) {
+       // handle exception
+        }
+        catch (InstantiationException e) {
+       // handle exception
+        }
+        catch (IllegalAccessException e) {
+       // handle exception
+        }
+
+        //new Main(); //Create and show the GUI. 
+   }
 
     public static void main(String[] args) {
-        // TODO code application logic here
+        //Page load
+        
+        readFromConfig(); //On page load, retrieve from the config.properties file
+        
+        
+        
+        if (theme.equals("system")) { //Using == here won't work 'cause the value retrieved from the properties file isn't the same as a string with the same value. .equals compares values whereas == compares objects.
+          //JOptionPane.showMessageDialog(null, "theme=system");  
+          changeThemeToSystem(); }
+          else {
+                  //JOptionPane.showMessageDialog(null, "theme!=system"); 
+                  
+        }
+        
+        
+        
         Main first = new Main();
         first.setResizable(false);
         first.setTitle("HCSWS Multiple Database Querier V1.1");
-        first.setSize(790, 470);
+        first.setSize(720, 470);
         first.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         first.setVisible(true);
     
@@ -357,7 +473,42 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
          {
              filewrite.printStackTrace();
          }
+        
     }
     
+    public void writeToConfiguration() { //Writes to the configuration file
+        
+        
+        try {
+            
+       
+        FileWriter out = new FileWriter("config.properties");
+        defaultProps.store(out, "---No Comment---");
+        out.close();
+         } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
+    public static void readFromConfig() {
+        
+                
+        try {
+            
+          FileReader in = new FileReader("config.properties");  
+         
+          //FileInputStream in = new FileInputStream("config.propeties"); //FileNotFoundException thrown???
+          defaultProps.load(in);
+          in.close(); 
+          
+          theme=defaultProps.getProperty("theme");
+          dir=defaultProps.getProperty("directory");
+          
+          
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+       
+    }
+    
 }
