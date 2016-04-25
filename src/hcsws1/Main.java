@@ -82,6 +82,7 @@ public class Main extends JFrame {
    List<String> columnNamesArrayList = new ArrayList<String>(); //1D ArrayList
    
    List<List<String>> dataArrayList = new ArrayList<List<String>>(); //2D ArrayList
+   int index = 0; //Index for the resultSet. Keeps track of how many rows each database has
    
    
     
@@ -91,7 +92,7 @@ public class Main extends JFrame {
        public Integer doInBackground() {
            beginButton.setEnabled(false);
            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-           
+           progressBar.setString(null);
            
           
            
@@ -105,8 +106,12 @@ public class Main extends JFrame {
            try {
                beginButton.setEnabled(true);
                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-               
+               progressBar.setValue(progressBar.getMaximum()); //When task is complete, set progress bar to complete.
+                progressBar.setString("Complete");
                 
+                //progressBar.setStringPainted(true);
+//progressBar.setForeground(Color.blue);
+//progressBar.setString("10%");
            } catch (Exception ignore) {
            }
        }
@@ -136,7 +141,7 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
     }
 });
 
-    progressBar.setMaximum(listOfFiles.length - 1);
+    progressBar.setMaximum(listOfFiles.length + 1);
 
     for (int i = 0; i < listOfFiles.length; i++) {
       if (listOfFiles[i].isFile()) {
@@ -155,8 +160,7 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
 //        System.out.println("Directory " + listOfFiles[i].getName());
 //      }  
       
-     
-     
+
     }
     
     try {
@@ -236,6 +240,7 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
      }
     
      exceptionOffset = 0;
+     index = 0; //Keeps track of the number of rows in each database's resultset in order to create those rows in the table object
      return databaseCount;
      
     }
@@ -281,16 +286,26 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
                     
                 outputArea.append(rsmd.getColumnName(i2) + ",");
                 
+                
                 columnNamesArrayList.add(i2,rsmd.getColumnName(i2));
                 //columnNames[i2] = rsmd.getColumnName(i2);
                 System.out.println(columnNamesArrayList.get(i2));
+                
                 }
                 
                }
 
-         outputArea.append("\n"); //Line break after EVERY database
+                if (outputArea.getLineCount() <= 1) { //Checks if column names have already been written
+                  
+                  outputArea.append("\n"); //Line break after column names
+                
+                }
+         
          //data = new String[rsmd.getColumnCount()][fileNumber + 1];
          //System.out.println("Number of columns: " + data.length);
+         
+         
+         
          while (resultSet.next())
          {
 //             writeToDatabase("INSERT INTO counter_types VALUES " + (resultSet.getString(sitename) + resultSet.getString(hb) + resultSet.getString(hi) + resultSet.getString(tray) + resultSet.getString(vcu) + resultSet.getString(occulus) + resultSet.getString(hp) + resultSet.getString(reflector)));
@@ -305,7 +320,7 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
            
             dataArrayList.add(new ArrayList<String>()); //Add to 2D List. Placing this here creates a new list object within the list object, thus increasing the max index 3 in 'dataArrayList.get(3).add(1,"Sagren")' each time the loop is run. Thus a new row is created each loop.
            
-           dataArrayList.get(fileNumber - exceptionOffset).add(0, databaseName);
+           dataArrayList.get(index).add(0, databaseName); //There's no need to account for the fileNumber here as the index includes the file number, think about it ;)
            //dataArrayList.get(0).set(1, databaseName); //Sets to already created object
            //dataArrayList.get(0).add(0, "Venolin");
            //dataArrayList.get(0).add(1, "Govender");
@@ -329,7 +344,7 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
            //System.out.println("test: " + dataArrayList.get(3).get(0)); //Works!
            //System.out.println("test: " + dataArrayList.get(3).get(1)); //Works!
            
-           System.out.println("Database name: " + dataArrayList.get(fileNumber - exceptionOffset).get(0)); //Works!
+           System.out.println("Database name: " + dataArrayList.get(index).get(0)); //Works!
            for (int i = 1; i < (rsmd.getColumnCount() + 1); i++) {
 //                    writer.append("DisplayName");
 //                    writer.append(',');
@@ -338,19 +353,21 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
                
                
                 outputArea.append(resultSet.getString(i) + ",");
-                dataArrayList.get(fileNumber - exceptionOffset).add(i, resultSet.getString(i));
+                dataArrayList.get(index).add(i, resultSet.getString(i));
                 //data[i][fileNumber] = resultSet.getString(i);
                 //dataArrayList.add(new ArrayList<String>()); //Add to 2D List
                 //dataArrayList.get(i).set(fileNumber, resultSet.getString(i));
                 
                 //System.out.println(data[i][fileNumber]);
                 //System.out.println("Test: " + dataArrayList.get(i).get(i));
-                System.out.println("Value: " + dataArrayList.get(fileNumber - exceptionOffset).get(i-1)); //Works!
+                System.out.println("Value: " + dataArrayList.get(index).get(i-1)); //Works!
                 
            }
             
 //                outputArea.append("'" + resultSet.getString(rsmd.getColumnCount()) + "'" + ");");
 //                outputArea.append(System.getProperty("line.separator"));
+           outputArea.append("\n"); //Line break after EVERY row in every
+           index++;
           }
      
          //dataArrayList.toArray(data);
@@ -629,10 +646,11 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
         
         Main first = new Main();
         first.setResizable(false);
-        first.setTitle("HCSWS Multiple Database Querier V1.3");
+        first.setTitle("HCSWS Multiple Database Querier V1.3.1");
         first.setSize(720, 490);
         first.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         first.setVisible(true);
+        first.setLocationRelativeTo(null); //On load, the application is placed in the center of the screen
     
         
     }
@@ -689,6 +707,20 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
        
     }
     
-    
+    public static void checkDirectoryValidity() {
+        
+                   
+    File folder = new File(dir);
+//    "ven\\"
+    File[] listOfFiles = folder.listFiles(new FilenameFilter() {
+    @Override
+    public boolean accept(File dir, String name) {
+        return name.endsWith(".db") != name.endsWith("_cube.db");
+
+
+    }
+});
+       
+    }
     
 }
