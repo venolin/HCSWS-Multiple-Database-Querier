@@ -45,3 +45,15 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# ===================================
+# Superfluous Java build output
+# ===================================
+build/*
+dist/*
+nbproject/private/*
+nbproject/build-impl.xml
+nbproject/genfiles.properties
+ven/*
+hs_err*.log
+output.csv
