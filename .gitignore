@@ -57,3 +57,7 @@ nbproject/genfiles.properties
 ven/*
 hs_err*.log
 output.csv
+Output/*
+ven/*.jar
+ven/"Web Resources"/*
+
