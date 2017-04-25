@@ -1,0 +1,1228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MuninnWindow</class>
+ <widget class="QMainWindow" name="MuninnWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>940</width>
+    <height>830</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>940</width>
+    <height>830</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>940</width>
+    <height>830</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Segoe UI</family>
+    <pointsize>9</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Muninn — Multiple Database Querier</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>images/raven_guard_badge.png</normaloff>images/raven_guard_badge.png</iconset>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>44</width>
+    <height>44</height>
+   </size>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonTextOnly</enum>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="DBDirGroupBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>591</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Database Directory</string>
+    </property>
+    <widget class="QPushButton" name="SubtractLocBtn">
+     <property name="geometry">
+      <rect>
+       <x>545</x>
+       <y>30</y>
+       <width>32</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Remove selected directory from saved list</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>images/Oxygen-list-remove.ico</normaloff>images/Oxygen-list-remove.ico</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="shortcut">
+      <string>Alt+R</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="AddLocBtn">
+     <property name="geometry">
+      <rect>
+       <x>505</x>
+       <y>30</y>
+       <width>32</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Add selected directory to saved list</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>images/Oxygen-list-add.ico</normaloff>images/Oxygen-list-add.ico</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="shortcut">
+      <string>Alt+A</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ChooseDirBtn">
+     <property name="geometry">
+      <rect>
+       <x>465</x>
+       <y>30</y>
+       <width>32</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Choose database directory</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>images/Iconsmind-Outline-Folder-Open.ico</normaloff>images/Iconsmind-Outline-Folder-Open.ico</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="shortcut">
+      <string>Alt+D</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="DBDirComboBox">
+     <property name="geometry">
+      <rect>
+       <x>15</x>
+       <y>30</y>
+       <width>440</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Choose a previously stored location</string>
+     </property>
+     <property name="editable">
+      <bool>true</bool>
+     </property>
+     <item>
+      <property name="text">
+       <string>C:/NortechSystems/Data/</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>C:/share/dbs/</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>D:/data/headcount/</string>
+      </property>
+     </item>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="DBsGroupBox">
+    <property name="geometry">
+     <rect>
+      <x>615</x>
+      <y>10</y>
+      <width>310</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Database Type Options</string>
+    </property>
+    <widget class="QPushButton" name="RefreshDBsBtn">
+     <property name="geometry">
+      <rect>
+       <x>265</x>
+       <y>30</y>
+       <width>32</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Refresh DB List/Count</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>images/Oxygen-view-refresh.ico</normaloff>images/Oxygen-view-refresh.ico</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="shortcut">
+      <string>Alt+F5</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="UseCubesCRadio">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>100</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Use only the Cube DBs</string>
+     </property>
+     <property name="text">
+      <string>Use &amp;Cubes</string>
+     </property>
+     <property name="shortcut">
+      <string>Alt+C</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="UseCubesMRadio">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>30</y>
+       <width>120</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Use only the Main DBs</string>
+     </property>
+     <property name="text">
+      <string>Use &amp;Main DBs</string>
+     </property>
+     <property name="shortcut">
+      <string>Alt+M</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="QueryGroupBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>915</width>
+      <height>265</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Query</string>
+    </property>
+    <widget class="QLabel" name="TableLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>50</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Table:</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::PlainText</enum>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="TableListWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>65</y>
+       <width>120</width>
+       <height>185</height>
+      </rect>
+     </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Select a table to query</string>
+     </property>
+     <property name="whatsThis">
+      <string>List of tables in DB</string>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="selectionRectVisible">
+      <bool>true</bool>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="ColumnLabel">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>30</y>
+       <width>51</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string/>
+     </property>
+     <property name="text">
+      <string>Fields:</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::PlainText</enum>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="ColumnsListWidget">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>65</y>
+       <width>140</width>
+       <height>185</height>
+      </rect>
+     </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Select table columns to query</string>
+     </property>
+     <property name="whatsThis">
+      <string>List of columns in selected table</string>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::MultiSelection</enum>
+     </property>
+     <property name="selectionRectVisible">
+      <bool>true</bool>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="PushSelectionBtn">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>25</y>
+       <width>32</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Push DB selections to query editor</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>images/Oxygen-arrow-right.ico</normaloff>images/Oxygen-arrow-right.ico</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="shortcut">
+      <string>Alt+P</string>
+     </property>
+    </widget>
+    <widget class="QPlainTextEdit" name="QueryTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>295</x>
+       <y>25</y>
+       <width>610</width>
+       <height>185</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>DejaVu Sans Mono</family>
+       <pointsize>9</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
+     </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>IBeamCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Type/Edit your query here.</string>
+     </property>
+     <property name="whatsThis">
+      <string>SQL Query Editor</string>
+     </property>
+     <property name="documentTitle">
+      <string>MultipleDBQuery</string>
+     </property>
+     <property name="lineWrapMode">
+      <enum>QPlainTextEdit::NoWrap</enum>
+     </property>
+     <property name="placeholderText">
+      <string>SELECT `ts`, `inVal`, `OutVal` FROM `Data` WHERE `GroupID` = 1;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="LoadScriptBtn">
+     <property name="geometry">
+      <rect>
+       <x>295</x>
+       <y>220</y>
+       <width>32</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Load SQL from Script</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>images/Oxygen-Actions-arrow-up.ico</normaloff>images/Oxygen-Actions-arrow-up.ico</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="shortcut">
+      <string>Alt+O</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="StopExecBtn">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>220</y>
+       <width>32</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Stop Query Execution</string>
+     </property>
+     <property name="whatsThis">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>images/Oxygen-media-playback-stop.ico</normaloff>images/Oxygen-media-playback-stop.ico</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="TableAliasLineEdit">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>25</y>
+       <width>60</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>DejaVu Sans Mono</family>
+      </font>
+     </property>
+     <property name="toolTip">
+      <string>Provide an alias to use for the selected table</string>
+     </property>
+     <property name="maxLength">
+      <number>5</number>
+     </property>
+     <property name="placeholderText">
+      <string>TBLA1</string>
+     </property>
+     <property name="clearButtonEnabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ExecuteBtn">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>220</y>
+       <width>32</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Execute query against DBs</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>images/Oxygen-media-playback-start.ico</normaloff>images/Oxygen-media-playback-start.ico</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="shortcut">
+      <string>Alt+U</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="TestQueryBtn">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>220</y>
+       <width>32</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>Test query against demo DB</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>images/Oxygen-dialog-ok-apply.ico</normaloff>images/Oxygen-dialog-ok-apply.ico</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="shortcut">
+      <string>Alt+T</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="OutputTypeLabel">
+     <property name="geometry">
+      <rect>
+       <x>600</x>
+       <y>220</y>
+       <width>120</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Select the file type when saving results</string>
+     </property>
+     <property name="text">
+      <string>Results File Type:</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::PlainText</enum>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="CSVRadioBtn">
+     <property name="geometry">
+      <rect>
+       <x>730</x>
+       <y>220</y>
+       <width>55</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="text">
+      <string>CS&amp;V</string>
+     </property>
+     <property name="shortcut">
+      <string>Alt+V</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="XLSRadioBtn">
+     <property name="geometry">
+      <rect>
+       <x>855</x>
+       <y>220</y>
+       <width>55</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="text">
+      <string>X&amp;LS</string>
+     </property>
+     <property name="shortcut">
+      <string>Alt+L</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <property name="autoExclusive">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="CSVSepComboBox">
+     <property name="geometry">
+      <rect>
+       <x>790</x>
+       <y>225</y>
+       <width>50</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>DejaVu Sans Mono</family>
+      </font>
+     </property>
+     <property name="toolTip">
+      <string>Select CSV field separator</string>
+     </property>
+     <property name="maxVisibleItems">
+      <number>5</number>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+     </property>
+     <item>
+      <property name="text">
+       <string>;</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>,</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>:</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>/t</string>
+      </property>
+     </item>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="SaveScriptBtn">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>320</y>
+      <width>32</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Save SQL Script</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>images/Oxygen-doc-save.ico</normaloff>images/Oxygen-doc-save.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>25</width>
+      <height>25</height>
+     </size>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+S</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="SaveScriptAsBtn">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>320</y>
+      <width>32</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Save SQL Script As ...</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>images/Oxygen-document-save-as.ico</normaloff>images/Oxygen-document-save-as.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>25</width>
+      <height>25</height>
+     </size>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+Shift+S</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="OutputGroupBox">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>419</y>
+      <width>915</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Results Output</string>
+    </property>
+    <widget class="QTableView" name="ResultsTableView">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>880</width>
+       <height>301</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>DejaVu Sans Mono</family>
+      </font>
+     </property>
+     <property name="cursor" stdset="0">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="sortingEnabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="DBProgressLabel">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>380</y>
+      <width>110</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Processed DB</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::PlainText</enum>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="CurrentDBLCDNum">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>115</x>
+      <y>380</y>
+      <width>75</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ForbiddenCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Last DB Processed</string>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="mode">
+     <enum>QLCDNumber::Dec</enum>
+    </property>
+    <property name="segmentStyle">
+     <enum>QLCDNumber::Filled</enum>
+    </property>
+    <property name="value" stdset="0">
+     <double>0.000000000000000</double>
+    </property>
+    <property name="intValue" stdset="0">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="DBOfLabel">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>195</x>
+      <y>380</y>
+      <width>20</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ForbiddenCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>of</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::PlainText</enum>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="TotalDBsLCDNum">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>215</x>
+      <y>380</y>
+      <width>75</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ForbiddenCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Total DBs to process</string>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="mode">
+     <enum>QLCDNumber::Dec</enum>
+    </property>
+    <property name="segmentStyle">
+     <enum>QLCDNumber::Filled</enum>
+    </property>
+    <property name="intValue" stdset="0">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>305</x>
+      <y>380</y>
+      <width>620</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="cursor">
+     <cursorShape>WaitCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Current Progress</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/* Windows Vista/7 Progress Bar */
+QProgressBar:horizontal { border-width: 1px; border-color: #999; border-style: solid; border-radius: 3px; padding: 0px; padding-left: 1px; padding-right:1px; background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e2e2e2, stop: 0.50 #dbdbdb , stop: 0.51 #d1d1d1, stop: 1 #fefefe); text-align: center; }
+QProgressBar::chunk:horizontal { background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #bfd255, stop: 0.50 #8eb92a, stop: 0.51 #72aa00, stop: 1 #9ecb2d);   font-size: 10px; width:10px; }</string>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="invertedAppearance">
+     <bool>false</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="MuninnMenuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>940</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="MunninnMenuFile">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <property name="toolTipsVisible">
+     <bool>true</bool>
+    </property>
+    <addaction name="actionExportResults"/>
+    <addaction name="actionLoadScript"/>
+    <addaction name="separator"/>
+    <addaction name="ActionExit"/>
+   </widget>
+   <widget class="QMenu" name="MuninnMenuDatabase">
+    <property name="title">
+     <string>Data&amp;base</string>
+    </property>
+    <property name="toolTipsVisible">
+     <bool>true</bool>
+    </property>
+    <addaction name="actionChooseDir"/>
+    <addaction name="actionAddLocation"/>
+    <addaction name="actionRemove_Location"/>
+    <addaction name="actionRefresh_DB_List_Count"/>
+    <addaction name="separator"/>
+    <addaction name="actionExecuteQuery"/>
+    <addaction name="actionTestQuery"/>
+   </widget>
+   <addaction name="MunninnMenuFile"/>
+   <addaction name="MuninnMenuDatabase"/>
+  </widget>
+  <widget class="QStatusBar" name="MuninnStatusBar">
+   <property name="sizeGripEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <action name="ActionExit">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Oxygen-application-exit.ico</normaloff>images/Oxygen-application-exit.ico</iconset>
+   </property>
+   <property name="text">
+    <string>E&amp;xit</string>
+   </property>
+   <property name="toolTip">
+    <string>Exit the application</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="shortcut">
+    <string>Alt+X</string>
+   </property>
+  </action>
+  <action name="actionChooseDir">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Iconsmind-Outline-Folder-Open.ico</normaloff>images/Iconsmind-Outline-Folder-Open.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Choose &amp;Directory</string>
+   </property>
+   <property name="toolTip">
+    <string>Choose Database Directory</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+D</string>
+   </property>
+  </action>
+  <action name="actionAddLocation">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Oxygen-list-add.ico</normaloff>images/Oxygen-list-add.ico</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Add Location</string>
+   </property>
+   <property name="toolTip">
+    <string>Add Current Location to remembered list</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+A</string>
+   </property>
+  </action>
+  <action name="actionRemove_Location">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Oxygen-list-remove.ico</normaloff>images/Oxygen-list-remove.ico</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Remove Location</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+R</string>
+   </property>
+  </action>
+  <action name="actionRefresh_DB_List_Count">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Oxygen-view-refresh.ico</normaloff>images/Oxygen-view-refresh.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Refresh DB List/Count</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+F5</string>
+   </property>
+  </action>
+  <action name="actionLoadScript">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Oxygen-Actions-arrow-up.ico</normaloff>images/Oxygen-Actions-arrow-up.ico</iconset>
+   </property>
+   <property name="text">
+    <string>L&amp;oad Script</string>
+   </property>
+   <property name="toolTip">
+    <string>Load Script from file</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+O</string>
+   </property>
+  </action>
+  <action name="actionTestQuery">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Oxygen-dialog-ok-apply.ico</normaloff>images/Oxygen-dialog-ok-apply.ico</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Test Query</string>
+   </property>
+   <property name="toolTip">
+    <string>Test query against Demo DB</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+T</string>
+   </property>
+  </action>
+  <action name="actionExecuteQuery">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Oxygen-media-playback-start.ico</normaloff>images/Oxygen-media-playback-start.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Exec&amp;ute Query</string>
+   </property>
+   <property name="toolTip">
+    <string>Execute query against DBs</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+U</string>
+   </property>
+  </action>
+  <action name="actionExportResults">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Oxygen-mimetypes-opendocument-spreadsheet.ico</normaloff>images/Oxygen-mimetypes-opendocument-spreadsheet.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Ex&amp;port Results</string>
+   </property>
+   <property name="toolTip">
+    <string>Export results to preferred type </string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+P</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>DBDirComboBox</tabstop>
+  <tabstop>ChooseDirBtn</tabstop>
+  <tabstop>AddLocBtn</tabstop>
+  <tabstop>SubtractLocBtn</tabstop>
+  <tabstop>UseCubesCRadio</tabstop>
+  <tabstop>UseCubesMRadio</tabstop>
+  <tabstop>RefreshDBsBtn</tabstop>
+  <tabstop>TableListWidget</tabstop>
+  <tabstop>TableAliasLineEdit</tabstop>
+  <tabstop>ColumnsListWidget</tabstop>
+  <tabstop>PushSelectionBtn</tabstop>
+  <tabstop>QueryTextEdit</tabstop>
+  <tabstop>LoadScriptBtn</tabstop>
+  <tabstop>TestQueryBtn</tabstop>
+  <tabstop>ExecuteBtn</tabstop>
+  <tabstop>StopExecBtn</tabstop>
+  <tabstop>SaveScriptBtn</tabstop>
+  <tabstop>SaveScriptAsBtn</tabstop>
+  <tabstop>CSVRadioBtn</tabstop>
+  <tabstop>XLSRadioBtn</tabstop>
+  <tabstop>ResultsTableView</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>ActionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>MuninnWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>469</x>
+     <y>414</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>XLSRadioBtn</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CSVSepComboBox</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>892</x>
+     <y>361</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>824</x>
+     <y>363</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
