@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MunninWindow</class>
- <widget class="QMainWindow" name="MunninWindow">
+ <class>MuninnWindow</class>
+ <widget class="QMainWindow" name="MuninnWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -326,9 +326,6 @@
      <property name="toolTip">
       <string>Select a table to query</string>
      </property>
-     <property name="statusTip">
-      <string>Select a table to view its columns/fields.</string>
-     </property>
      <property name="whatsThis">
       <string>List of tables in DB</string>
      </property>
@@ -475,7 +472,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="toolTip">
-      <string>Load SQL Script</string>
+      <string>Load SQL from Script</string>
      </property>
      <property name="text">
       <string/>
@@ -489,6 +486,9 @@
        <width>25</width>
        <height>25</height>
       </size>
+     </property>
+     <property name="shortcut">
+      <string>Alt+O</string>
      </property>
     </widget>
     <widget class="QPushButton" name="StopExecBtn">
@@ -541,9 +541,6 @@
       </font>
      </property>
      <property name="toolTip">
-      <string>Table Alias</string>
-     </property>
-     <property name="statusTip">
       <string>Provide an alias to use for the selected table</string>
      </property>
      <property name="maxLength">
@@ -569,7 +566,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="toolTip">
-      <string>Execute Query</string>
+      <string>Execute query against DBs</string>
      </property>
      <property name="text">
       <string/>
@@ -583,6 +580,9 @@
        <width>25</width>
        <height>25</height>
       </size>
+     </property>
+     <property name="shortcut">
+      <string>Alt+U</string>
      </property>
     </widget>
     <widget class="QPushButton" name="TestQueryBtn">
@@ -598,10 +598,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="toolTip">
-      <string>Test query</string>
-     </property>
-     <property name="statusTip">
-      <string>Test the query against the demo DB</string>
+      <string>Test query against demo DB</string>
      </property>
      <property name="text">
       <string/>
@@ -616,6 +613,9 @@
        <height>25</height>
       </size>
      </property>
+     <property name="shortcut">
+      <string>Alt+T</string>
+     </property>
     </widget>
     <widget class="QLabel" name="OutputTypeLabel">
      <property name="geometry">
@@ -627,9 +627,6 @@
       </rect>
      </property>
      <property name="toolTip">
-      <string/>
-     </property>
-     <property name="statusTip">
       <string>Select the file type when saving results</string>
      </property>
      <property name="text">
@@ -677,7 +674,7 @@
       <string>X&amp;LS</string>
      </property>
      <property name="shortcut">
-      <string>Shift+L</string>
+      <string>Alt+L</string>
      </property>
      <property name="checked">
       <bool>false</bool>
@@ -759,6 +756,9 @@
       <height>25</height>
      </size>
     </property>
+    <property name="shortcut">
+     <string>Ctrl+S</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="SaveScriptAsBtn">
     <property name="geometry">
@@ -787,6 +787,9 @@
       <width>25</width>
       <height>25</height>
      </size>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+Shift+S</string>
     </property>
    </widget>
    <widget class="QGroupBox" name="OutputGroupBox">
@@ -851,7 +854,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Processing DB</string>
+     <string>Processed DB</string>
     </property>
     <property name="textFormat">
      <enum>Qt::PlainText</enum>
@@ -873,7 +876,7 @@
      <cursorShape>ForbiddenCursor</cursorShape>
     </property>
     <property name="toolTip">
-     <string>Current DB</string>
+     <string>Last DB Processed</string>
     </property>
     <property name="autoFillBackground">
      <bool>true</bool>
@@ -929,7 +932,7 @@
      <cursorShape>ForbiddenCursor</cursorShape>
     </property>
     <property name="toolTip">
-     <string>Current DB</string>
+     <string>Total DBs to process</string>
     </property>
     <property name="autoFillBackground">
      <bool>true</bool>
@@ -995,14 +998,30 @@ QProgressBar::chunk:horizontal { background-color: QLinearGradient( x1: 0, y1: 0
    </property>
    <widget class="QMenu" name="MunninnMenuFile">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
+    <property name="toolTipsVisible">
+     <bool>true</bool>
+    </property>
+    <addaction name="actionExportResults"/>
+    <addaction name="actionLoadScript"/>
+    <addaction name="separator"/>
     <addaction name="ActionExit"/>
    </widget>
    <widget class="QMenu" name="MuninnMenuDatabase">
     <property name="title">
-     <string>Database</string>
+     <string>Data&amp;base</string>
     </property>
+    <property name="toolTipsVisible">
+     <bool>true</bool>
+    </property>
+    <addaction name="actionChooseDir"/>
+    <addaction name="actionAddLocation"/>
+    <addaction name="actionRemove_Location"/>
+    <addaction name="actionRefresh_DB_List_Count"/>
+    <addaction name="separator"/>
+    <addaction name="actionExecuteQuery"/>
+    <addaction name="actionTestQuery"/>
    </widget>
    <addaction name="MunninnMenuFile"/>
    <addaction name="MuninnMenuDatabase"/>
@@ -1031,6 +1050,120 @@ QProgressBar::chunk:horizontal { background-color: QLinearGradient( x1: 0, y1: 0
    </property>
    <property name="shortcut">
     <string>Alt+X</string>
+   </property>
+  </action>
+  <action name="actionChooseDir">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Iconsmind-Outline-Folder-Open.ico</normaloff>images/Iconsmind-Outline-Folder-Open.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Choose &amp;Directory</string>
+   </property>
+   <property name="toolTip">
+    <string>Choose Database Directory</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+D</string>
+   </property>
+  </action>
+  <action name="actionAddLocation">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Oxygen-list-add.ico</normaloff>images/Oxygen-list-add.ico</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Add Location</string>
+   </property>
+   <property name="toolTip">
+    <string>Add Current Location to remembered list</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+A</string>
+   </property>
+  </action>
+  <action name="actionRemove_Location">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Oxygen-list-remove.ico</normaloff>images/Oxygen-list-remove.ico</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Remove Location</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+R</string>
+   </property>
+  </action>
+  <action name="actionRefresh_DB_List_Count">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Oxygen-view-refresh.ico</normaloff>images/Oxygen-view-refresh.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Refresh DB List/Count</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+F5</string>
+   </property>
+  </action>
+  <action name="actionLoadScript">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Oxygen-Actions-arrow-up.ico</normaloff>images/Oxygen-Actions-arrow-up.ico</iconset>
+   </property>
+   <property name="text">
+    <string>L&amp;oad Script</string>
+   </property>
+   <property name="toolTip">
+    <string>Load Script from file</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+O</string>
+   </property>
+  </action>
+  <action name="actionTestQuery">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Oxygen-dialog-ok-apply.ico</normaloff>images/Oxygen-dialog-ok-apply.ico</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Test Query</string>
+   </property>
+   <property name="toolTip">
+    <string>Test query against Demo DB</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+T</string>
+   </property>
+  </action>
+  <action name="actionExecuteQuery">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Oxygen-media-playback-start.ico</normaloff>images/Oxygen-media-playback-start.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Exec&amp;ute Query</string>
+   </property>
+   <property name="toolTip">
+    <string>Execute query against DBs</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+U</string>
+   </property>
+  </action>
+  <action name="actionExportResults">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Oxygen-mimetypes-opendocument-spreadsheet.ico</normaloff>images/Oxygen-mimetypes-opendocument-spreadsheet.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Ex&amp;port Results</string>
+   </property>
+   <property name="toolTip">
+    <string>Export results to preferred type </string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+P</string>
    </property>
   </action>
  </widget>
@@ -1062,7 +1195,7 @@ QProgressBar::chunk:horizontal { background-color: QLinearGradient( x1: 0, y1: 0
   <connection>
    <sender>ActionExit</sender>
    <signal>triggered()</signal>
-   <receiver>MunninWindow</receiver>
+   <receiver>MuninnWindow</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
