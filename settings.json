@@ -1,0 +1,13 @@
+{
+	"preferredLocations": [
+		"C:/NortechSystems/Data/",
+		"C:/NortechSystems/IdentiPark/Database/",
+		"C:/Share/DBs/",
+		"D:/Data/Headcount/"
+	],
+	"DemoDBName": "demo.db",
+	"preferredExport": "CSV",
+	"csvSep": ";",
+	"defaultFileName": "out",
+	"browseStartDir": ""
+}
