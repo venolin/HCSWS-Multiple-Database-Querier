@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)http://www.tutorialspoint.com/swing/swing_jtextfield.htm -->
+<html lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./Swing JTextField Class_files/cb=gapi.loaded_1" async=""></script><script src="./Swing JTextField Class_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" src="./Swing JTextField Class_files/plusone.js" gapi_processed="true"></script><link rel="stylesheet" type="text/css" href="./Swing JTextField Class_files/widget120.css" media="all">
+<meta charset="utf-8">
+<title>Swing JTextField Class</title>
+<link rel="shortcut icon" href="http://www.tutorialspoint.com/favicon.ico" type="image/x-icon">
+<meta name="Keywords" content="Swing, Graphical User Interface, Swing Controls, Event Handling, Event Classes, Event listener interfaces, Layout Managers, Adapters, Layouts, Menus ">
+<meta name="Description" content="Swing Tutorial -  Learn Swing Framework in simple and easy steps using this beginner&#39;s tutorial containing basic to advanced knowledge starting from Environment Setup, Swing, Graphical User Interface, Swing Controls, Event Handling, Event Classes, Event listener interfaces, Layout Managers, Adapters, Layouts, Menus">
+<!--<base href="http://www.tutorialspoint.com">--><base href=".">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
+<script async="" type="text/javascript" src="./Swing JTextField Class_files/ca-pub-7133395778201029.js"></script><script type="text/javascript" src="./Swing JTextField Class_files/jquery.min.js"></script>
+<script type="text/javascript" src="./Swing JTextField Class_files/mobile.js"></script>
+<link rel="stylesheet" type="text/css" href="./Swing JTextField Class_files/style.css">
+<link rel="stylesheet" type="text/css" href="./Swing JTextField Class_files/prettify.css">
+<script type="text/javascript" src="./Swing JTextField Class_files/prettify.js"></script>
+<style media="screen" type="text/css"> 
+#topmenu a:hover {text-decoration:none;color:#0000ce  !important;background-color:transparent;font-weight:bold;}
+.heading{
+  color:#eee;
+}
+#header{ 
+background:#306ca6 !important;
+}
+#topmenu
+{
+background-color:#4f5557 !important;
+}
+#leftcol ul.menu li.heading 
+{
+background:#4f5557 !important;
+border:1px solid #3980F4  !important;
+}
+#middlecol  {min-height:1200px; padding:0px;}
+</style>
+<script src="./Swing JTextField Class_files/urchin.js" type="text/javascript"> 
+</script>
+<script type="text/javascript"> 
+_uacct = "UA-232293-6";urchinTracker();
+</script>
+</head>
+<body onload="prettyPrint()">
+<div id="header">
+<div class="wrapper">
+<h1 class="logo"><a href="http://www.tutorialspoint.com/index.htm">Tutorials Point - Simply Easy Learning</a></h1>
+<div id="search">
+<form method="get" id="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com">
+<input type="text" name="as_q" id="s" value="Search this site..." onfocus="if (this.value == &#39;Search this site...&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Search this site...&#39;;}">
+<input value="FORID:11" name="cof" type="hidden">
+<input type="hidden" name="ie" value="ISO-8859-1">
+<input class="submit btn" type="image" src="./Swing JTextField Class_files/icon-search.png" alt="Go">
+</form>
+</div>
+</div>
+</div>
+<div id="topmenu">
+<div class="wrapper">
+<div id="mobileleft">
+<a href="http://www.tutorialspoint.com/index.htm" id="home"><img src="./Swing JTextField Class_files/home-icon.png"></a>
+</div>
+<div id="left">
+<a href="http://www.tutorialspoint.com/index.htm" target="_top">Home </a>
+<a href="http://www.tutorialspoint.com/computer_programming_tutorials.htm">Programming </a>
+<a href="http://www.tutorialspoint.com/java_technology_tutorials.htm">Java </a>
+<a href="http://www.tutorialspoint.com/web_development_tutorials.htm">Web </a>
+<a href="http://www.tutorialspoint.com/database_tutorials.htm">Databases </a>
+<a href="http://www.tutorialspoint.com/academic_tutorials.htm">Academic</a>
+<a href="http://www.tutorialspoint.com/management_tutorials.htm" title="Management Tutorials">Management</a>
+<a href="http://www.tutorialspoint.com/software_quality_tutorials.htm" title="Software Quality Tutorials">Quality</a>
+<a href="http://www.tutorialspoint.com/telecom_tutorials.htm" title="Telecom Tutorials">Telecom</a>
+<a href="http://www.tutorialspoint.com/misc_tutorials.htm">More...</a>
+</div>
+<div id="mobileright">
+<a href="http://www.tutorialspoint.com/#" id="pull"><img src="./Swing JTextField Class_files/nav-icon.png"></a>
+</div>
+<div id="right">
+<a href="http://www.tutorialspoint.com/references.htm" target="_top">REFERENCES</a> |
+<a href="http://www.tutorialspoint.com/forums/index.php" target="_top">FORUM</a> |
+<a href="http://www.tutorialspoint.com/about/index.htm" target="_top">ABOUT</a> |
+<a href="http://www.tutorialspoint.com/about/contact_us.htm" target="_top">CONTACT</a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div id="leftcol">
+<div class="mini-logo">
+<img src="./Swing JTextField Class_files/swing-mini-logo.png" alt="SWING Tutorial">
+</div>
+<ul class="menu">
+<li class="heading">SWING Tutorial</li>
+<li><a target="_top" href="http://www.tutorialspoint.com/swing/index.htm">SWING - Home</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/swing/swing_overview.htm">SWING - Overview</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/swing/swing_environment.htm">SWING - Environment</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/swing/swing_controls.htm"><b>SWING - Controls</b></a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/swing/swing_event_handling.htm">SWING - Event Handling</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/swing/swing_event_classes.htm">SWING - Event Classes</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/swing/swing_event_listeners.htm">SWING - Event Listeners</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/swing/swing_event_adapters.htm">SWING - Event Adapters</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/swing/swing_layouts.htm">SWING - Layouts</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/swing/swing_menu.htm">SWING - Menu </a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/swing/swing_containers.htm">SWING - Containers</a></li>
+</ul>
+<ul class="menu">
+<li class="heading">SWING Useful Resources</li>
+<li><a target="_top" href="http://www.tutorialspoint.com/swing/swing_quick_guide.htm">SWING Quick Guide</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/swing/swing_useful_resources.htm">SWING Useful Resources</a></li>
+</ul>
+<ul class="menu">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="http://www.tutorialspoint.com/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div><!-- leftcol -->
+<div id="middlecol">
+<!-- PRINTING STARTS HERE -->
+<div class="content">
+<h1>Swing JTextField Class</h1>
+<div class="topgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript" src="./Swing JTextField Class_files/show_ads.js"> 
+</script><ins style="display:inline-table;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:468px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:468px;background-color:transparent"><iframe width="468" height="60" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+</div>
+<hr>
+<div class="pre-btn">
+<a href="http://www.tutorialspoint.com/swing/swing_jcombobox.htm">Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="http://www.tutorialspoint.com/swing/swing_jpasswordfield.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr>
+<h2>Introduction</h2>
+<p>The class <b>JTextField</b> is a component which allows the editing of a single line of text. </p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>javax.swing.JTextField</b> class:</p>
+<pre class="prettyprint prettyprinted"><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">JTextField</span><span class="pln">
+   </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">JTextComponent</span><span class="pln">
+      </span><span class="kwd">implements</span><span class="pln"> </span><span class="typ">SwingConstants</span></pre>
+<h2>Field</h2>
+<p>Following are the fields for <b>javax.swing.JList</b> class:</p>
+<ul class="list">
+<li><p><b>static String notifyAction</b> -- Name of the action to send notification that the contents of the field have been accepted.</p></li>
+</ul>
+<h2>Class constructors</h2>
+<table class="src">
+<tbody><tr><th style="width:5%">S.N.</th><th>Constructor &amp; Description</th></tr>
+<tr><td>1</td><td><b>JTextField()  </b><br>Constructs a new TextField.</td></tr>
+<tr><td>2</td><td><b>JTextField(Document doc, String text, int columns)  </b><br>Constructs a new JTextField that uses the given text storage model and the given number of columns.</td></tr>
+<tr><td>3</td><td><b>JTextField(int columns)  </b><br>Constructs a new empty TextField with the specified number of columns.</td></tr>
+<tr><td>4</td><td><b>JTextField(String text)  </b><br>Constructs a new TextField initialized with the specified text.</td></tr>
+<tr><td>5</td><td><b>JTextField(String text, int columns)  </b><br>Constructs a new TextField initialized with the specified text and columns.</td></tr>		  
+</tbody></table>
+<h2>Class methods</h2>
+<table class="src">
+<tbody><tr><th style="width:5%">S.N.</th><th>Method &amp; Description</th></tr>
+<tr><td>1</td><td><b>protected void actionPropertyChanged(Action action, String propertyName) </b><br>Updates the textfield's state in response to property changes in associated action.</td></tr>	
+<tr><td>2</td><td><b>void addActionListener(ActionListener l) </b><br>Adds the specified action listener to receive action events from this textfield.</td></tr>	
+<tr><td>3</td><td><b>protected void configurePropertiesFromAction(Action a) </b><br>Sets the properties on this textfield to match those in the specified Action.</td></tr>	
+<tr><td>4</td><td><b>protected  PropertyChangeListener	createActionPropertyChangeListener(Action a) </b><br>Creates and returns a PropertyChangeListener that is responsible for listening for changes from the specified Action and updating the appropriate properties.</td></tr>	
+<tr><td>5</td><td><b>protected  Document createDefaultModel() </b><br>Creates the default implementation of the model to be used at construction if one isn't explicitly given.</td></tr>	
+<tr><td>6</td><td><b>protected void fireActionPerformed() </b><br>Notifies all listeners that have registered interest for notification on this event type.</td></tr>	
+<tr><td>7</td><td><b>AccessibleContext	getAccessibleContext() </b><br>Gets the AccessibleContext associated with this JTextField.</td></tr>	
+<tr><td>8</td><td><b>Action	getAction() </b><br>Returns the currently set Action for this ActionEvent source, or null if no Action is set.</td></tr>	
+<tr><td>9</td><td><b>ActionListener[] getActionListeners() </b><br>Returns an array of all the ActionListeners added to this JTextField with addActionListener().</td></tr>	
+<tr><td>10</td><td><b>Action[] getActions() </b><br>Fetches the command list for the editor.</td></tr>	
+<tr><td>11</td><td><b>int getColumns() </b><br>Returns the number of columns in this TextField.</td></tr>	
+<tr><td>12</td><td><b>protected  int	getColumnWidth() </b><br>Returns the column width.</td></tr>	
+<tr><td>13</td><td><b>int getHorizontalAlignment() </b><br>Returns the horizontal alignment of the text.
+</td></tr><tr><td>14</td><td><b>BoundedRangeModel	getHorizontalVisibility()</b><br>Gets the visibility of the text field.</td></tr>	
+<tr><td>15</td><td><b>Dimension	getPreferredSize() </b><br>Returns the preferred size Dimensions needed for this TextField.</td></tr>	
+<tr><td>16</td><td><b>int getScrollOffset() </b><br>Gets the scroll offset, in pixels.</td></tr>	
+<tr><td>17</td><td><b>String	getUIClassID() </b><br>Gets the class ID for a UI.</td></tr>	
+<tr><td>18</td><td><b>boolean isValidateRoot() </b><br>Calls to revalidate that come from within the textfield itself will be handled by validating the textfield, unless the textfield is contained within a JViewport, in which case this returns false.</td></tr>	
+<tr><td>19</td><td><b>protected  String	paramString() </b><br>Returns a string representation of this JTextField.</td></tr>	
+<tr><td>20</td><td><b>void postActionEvent() </b><br>Processes action events occurring on this textfield by dispatching them to any registered ActionListener objects.</td></tr>	
+<tr><td>21</td><td><b>void removeActionListener(ActionListener l) </b><br>Removes the specified action listener so that it no longer receives action events from this textfield.</td></tr>	
+<tr><td>22</td><td><b>void scrollRectToVisible(Rectangle r) </b><br>Scrolls the field left or right.</td></tr>	
+<tr><td>23</td><td><b>void setAction(Action a) </b><br>Sets the Action for the ActionEvent source.
+</td></tr><tr><td>24</td><td><b>void setActionCommand(String command) </b><br>Sets the command string used for action events.</td></tr>	
+<tr><td>25</td><td><b>void setColumns(int columns) </b><br>Sets the number of columns in this TextField, and then invalidate the layout.</td></tr>	
+<tr><td>26</td><td><b>void setDocument(Document doc) </b><br>Associates the editor with a text document.</td></tr>	
+<tr><td>27</td><td><b>void setFont(Font f) </b><br>Sets the current font.</td></tr>	
+<tr><td>28</td><td><b>void setHorizontalAlignment(int alignment) </b><br>Sets the horizontal alignment of the text.</td></tr>	
+<tr><td>29</td><td><b>void setScrollOffset(int scrollOffset) </b><br>Sets the scroll offset, in pixels.</td></tr>	
+</tbody></table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes:</p>
+<ul class="list">
+<li><p>javax.swing.text.JTextComponent</p></li>
+<li><p>javax.swing.JComponent</p></li>
+<li><p>java.awt.Container</p></li>
+<li><p>java.awt.Component</p></li>
+<li><p>java.lang.Object</p></li>
+</ul>
+<h2>JTextField Example</h2>
+<p>Create the following java program using any editor of your choice in say <b>D:/ &gt; SWING &gt; com &gt; tutorialspoint &gt; gui &gt;</b></p>
+<i>SwingControlDemo.java</i>
+<pre class="prettyprint prettyprinted"><span class="kwd">package</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">tutorialspoint</span><span class="pun">.</span><span class="pln">gui</span><span class="pun">;</span><span class="pln">
+ 
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">awt</span><span class="pun">.*;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">awt</span><span class="pun">.</span><span class="kwd">event</span><span class="pun">.*;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> javax</span><span class="pun">.</span><span class="pln">swing</span><span class="pun">.*;</span><span class="pln">
+ 
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">SwingControlDemo</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">JFrame</span><span class="pln"> mainFrame</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">JLabel</span><span class="pln"> headerLabel</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">JLabel</span><span class="pln"> statusLabel</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">JPanel</span><span class="pln"> controlPanel</span><span class="pun">;</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">SwingControlDemo</span><span class="pun">(){</span><span class="pln">
+      prepareGUI</span><span class="pun">();</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">){</span><span class="pln">
+      </span><span class="typ">SwingControlDemo</span><span class="pln">  swingControlDemo </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">SwingControlDemo</span><span class="pun">();</span><span class="pln">      
+      swingControlDemo</span><span class="pun">.</span><span class="pln">showTextFieldDemo</span><span class="pun">();</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> prepareGUI</span><span class="pun">(){</span><span class="pln">
+      mainFrame </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">JFrame</span><span class="pun">(</span><span class="str">"Java Swing Examples"</span><span class="pun">);</span><span class="pln">
+      mainFrame</span><span class="pun">.</span><span class="pln">setSize</span><span class="pun">(</span><span class="lit">400</span><span class="pun">,</span><span class="lit">400</span><span class="pun">);</span><span class="pln">
+      mainFrame</span><span class="pun">.</span><span class="pln">setLayout</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">GridLayout</span><span class="pun">(</span><span class="lit">3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">));</span><span class="pln">
+      mainFrame</span><span class="pun">.</span><span class="pln">addWindowListener</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">WindowAdapter</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> windowClosing</span><span class="pun">(</span><span class="typ">WindowEvent</span><span class="pln"> windowEvent</span><span class="pun">){</span><span class="pln">
+            </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">exit</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);</span><span class="pln">
+         </span><span class="pun">}</span><span class="pln">        
+      </span><span class="pun">});</span><span class="pln">    
+      headerLabel </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">JLabel</span><span class="pun">(</span><span class="str">""</span><span class="pun">,</span><span class="pln"> </span><span class="typ">JLabel</span><span class="pun">.</span><span class="pln">CENTER</span><span class="pun">);</span><span class="pln">        
+      statusLabel </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">JLabel</span><span class="pun">(</span><span class="str">""</span><span class="pun">,</span><span class="typ">JLabel</span><span class="pun">.</span><span class="pln">CENTER</span><span class="pun">);</span><span class="pln">    
+
+      statusLabel</span><span class="pun">.</span><span class="pln">setSize</span><span class="pun">(</span><span class="lit">350</span><span class="pun">,</span><span class="lit">100</span><span class="pun">);</span><span class="pln">
+
+      controlPanel </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">JPanel</span><span class="pun">();</span><span class="pln">
+      controlPanel</span><span class="pun">.</span><span class="pln">setLayout</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FlowLayout</span><span class="pun">());</span><span class="pln">
+
+      mainFrame</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">headerLabel</span><span class="pun">);</span><span class="pln">
+      mainFrame</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">controlPanel</span><span class="pun">);</span><span class="pln">
+      mainFrame</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">statusLabel</span><span class="pun">);</span><span class="pln">
+      mainFrame</span><span class="pun">.</span><span class="pln">setVisible</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="pln">  
+   </span><span class="pun">}</span><span class="pln">
+
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> showTextFieldDemo</span><span class="pun">(){</span><span class="pln">
+      headerLabel</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="str">"Control in action: JTextField"</span><span class="pun">);</span><span class="pln"> 
+
+      </span><span class="typ">JLabel</span><span class="pln">  namelabel</span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">JLabel</span><span class="pun">(</span><span class="str">"User ID: "</span><span class="pun">,</span><span class="pln"> </span><span class="typ">JLabel</span><span class="pun">.</span><span class="pln">RIGHT</span><span class="pun">);</span><span class="pln">
+      </span><span class="typ">JLabel</span><span class="pln">  passwordLabel </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">JLabel</span><span class="pun">(</span><span class="str">"Password: "</span><span class="pun">,</span><span class="pln"> </span><span class="typ">JLabel</span><span class="pun">.</span><span class="pln">CENTER</span><span class="pun">);</span><span class="pln">
+      </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">JTextField</span><span class="pln"> userText </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">JTextField</span><span class="pun">(</span><span class="lit">6</span><span class="pun">);</span><span class="pln">
+      </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">JPasswordField</span><span class="pln"> passwordText </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">JPasswordField</span><span class="pun">(</span><span class="lit">6</span><span class="pun">);</span><span class="pln">      
+
+      </span><span class="typ">JButton</span><span class="pln"> loginButton </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">JButton</span><span class="pun">(</span><span class="str">"Login"</span><span class="pun">);</span><span class="pln">
+      loginButton</span><span class="pun">.</span><span class="pln">addActionListener</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ActionListener</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> actionPerformed</span><span class="pun">(</span><span class="typ">ActionEvent</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">     
+            </span><span class="typ">String</span><span class="pln"> data </span><span class="pun">=</span><span class="pln"> </span><span class="str">"Username "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> userText</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">();</span><span class="pln">
+            data </span><span class="pun">+=</span><span class="pln"> </span><span class="str">", Password: "</span><span class="pln"> 
+            </span><span class="pun">+</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">String</span><span class="pun">(</span><span class="pln">passwordText</span><span class="pun">.</span><span class="pln">getPassword</span><span class="pun">());</span><span class="pln"> 
+            statusLabel</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="pln">data</span><span class="pun">);</span><span class="pln">        
+         </span><span class="pun">}</span><span class="pln">
+      </span><span class="pun">});</span><span class="pln"> 
+
+      controlPanel</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">namelabel</span><span class="pun">);</span><span class="pln">
+      controlPanel</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">userText</span><span class="pun">);</span><span class="pln">
+      controlPanel</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">passwordLabel</span><span class="pun">);</span><span class="pln">       
+      controlPanel</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">passwordText</span><span class="pun">);</span><span class="pln">
+      controlPanel</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">loginButton</span><span class="pun">);</span><span class="pln">
+      mainFrame</span><span class="pun">.</span><span class="pln">setVisible</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="pln">  
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>Compile the program using command prompt. Go to <b>D:/ &gt; SWING </b> and type the following command.</p>
+<pre class="result">D:\SWING&gt;javac com\tutorialspoint\gui\SwingControlDemo.java
+</pre>
+<p>If no error comes that means compilation is successful. Run the program using following command.</p>
+<pre class="result">D:\SWING&gt;java com.tutorialspoint.gui.SwingControlDemo
+</pre>
+<p>Verify the following output</p>
+<img src="./Swing JTextField Class_files/swing_jtextfield.jpg" alt="Swing JTextField">
+<hr>
+<div class="pre-btn">
+<a href="http://www.tutorialspoint.com/swing/swing_jcombobox.htm">Previous Page</a>
+</div>
+<div class="print-btn">
+<a href="http://www.tutorialspoint.com/cgi-bin/printpage.cgi" target="_blank">Print Version</a>
+</div>
+<div class="nxt-btn">
+<a href="http://www.tutorialspoint.com/swing/swing_jpasswordfield.htm">Next Page</a>
+</div>
+<div class="clearer"></div>
+<hr>
+</div>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="./Swing JTextField Class_files/show_ads.js"></script><ins style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><iframe width="336" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+</div>
+</div><!-- middlecol -->
+<div id="rightcol">
+<!-- AddThis Button BEGIN -->
+<div class="addthis">
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook at300b" title="Facebook" href="http://www.tutorialspoint.com/#"><span class="at16nc at300bs at15nc at15t_facebook at16t_facebook"><span class="at_a11y">Share on facebook</span></span></a>
+<a class="addthis_button_twitter at300b" title="Tweet" href="http://www.tutorialspoint.com/#"><span class="at16nc at300bs at15nc at15t_twitter at16t_twitter"><span class="at_a11y">Share on twitter</span></span></a>
+<script type="text/javascript"> 
+<!--
+ document.write('<a class="addthis_button_google_plusone" g:plusone:count="false"></a>');
+//-->
+</script><a class="addthis_button_google_plusone at300b" g:plusone:count="false"><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 24px; height: 15px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 24px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" tabindex="0" vspace="0" width="100%" id="I0_1404934056706" name="I0_1404934056706" src="./Swing JTextField Class_files/fastbutton.htm" data-gapiattached="true" title="+1"></iframe></div></a>
+<a class="addthis_button_linkedin at300b" href="http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=ra-4f661ec623a400f0&source=tbx-300&lng=en-GB&s=linkedin&url=http%3A%2F%2Fwww.tutorialspoint.com%2Fswing%2Fswing_jtextfield.htm&title=Swing%20JTextField%20Class&ate=AT-ra-4f661ec623a400f0/-/-/53bd97a7707d6be9/2&frommenu=1&uid=53bd97a78a405eb5&ct=1&pre=https%3A%2F%2Fwww.google.co.za%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="LinkedIn"><span class="at16nc at300bs at15nc at15t_linkedin at16t_linkedin"><span class="at_a11y">Share on linkedin</span></span></a>
+<a class="addthis_button_email at300b" target="_blank" title="Email" href="http://www.tutorialspoint.com/#"><span class="at16nc at300bs at15nc at15t_email at16t_email"><span class="at_a11y">Share on email</span></span></a>
+<a class="addthis_button_compact at300m" href="http://www.tutorialspoint.com/#"><span class="at16nc at300bs at15nc at15t_compact at16t_compact"><span class="at_a11y">More Sharing Services</span></span></a>
+<div class="atclear"></div></div>
+<script type="text/javascript" src="./Swing JTextField Class_files/addthis_widget.js"></script><div id="_atssh" style="visibility: hidden; height: 1px; width: 1px; position: absolute; z-index: 100000;"><iframe id="_atssh574" title="AddThis utility frame" src="./Swing JTextField Class_files/sh164.htm" style="height: 1px; width: 1px; position: absolute; z-index: 100000; border: 0px; left: 0px; top: 0px;"></iframe></div><script type="text/javascript" src="./Swing JTextField Class_files/core142.js"></script>
+<script type="text/javascript" src="./Swing JTextField Class_files/core142.js"></script></div>
+<!-- AddThis Button END -->
+<div class="localad">
+<a rel="nofollow" href="http://www.modernindianbabynames.com/" target="_blank" title="Modern Baby Names">Modern Baby Names</a>
+</div>
+<div class="localad">
+<a rel="nofollow" href="http://www.photofuntoos.com/" target="_blank" title="Online Photo Editing">Online Photo Editing</a>
+</div>
+<div class="rightgooglead">
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript" src="./Swing JTextField Class_files/show_ads.js"> 
+</script><ins style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><ins id="aswift_2_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><iframe width="160" height="600" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+</div>
+</div><!-- rightcol -->
+<div style="clear:both;"></div>
+</div><!-- wrapper -->
+<div id="footer">
+<div class="wrapper">
+<div id="bottommenu">
+<a href="http://www.tutorialspoint.com/asp.net/index.htm" target="_top">ASP.NET </a> |
+<a href="http://www.tutorialspoint.com/jquery/index.htm" target="_top">jQuery </a> |
+<a href="http://www.tutorialspoint.com/ajax/index.htm" target="_top">AJAX </a> |
+<a href="http://www.tutorialspoint.com/ant/index.htm" target="_top">ANT</a> |
+<a href="http://www.tutorialspoint.com/swing/index.htm" target="_top">iOS </a> |
+<a href="http://www.tutorialspoint.com/servlets/index.htm" target="_top">Servlets </a> |
+<a href="http://www.tutorialspoint.com/log4j/index.htm" target="_top">log4j </a> |
+<a href="http://www.tutorialspoint.com/ibatis/index.htm" target="_top">iBATIS </a> |
+<a href="http://www.tutorialspoint.com/hibernate/index.htm" target="_top">Hibernate </a> |
+<a href="http://www.tutorialspoint.com/jdbc/index.htm" target="_top">JDBC </a> |
+<a href="http://www.tutorialspoint.com/struts_2/index.htm" target="_top">Struts </a> |
+<a href="http://www.tutorialspoint.com/html5/index.htm" target="_top">HTML5 </a> |
+<a href="http://www.tutorialspoint.com/sql/index.htm" target="_top">SQL </a> |
+<a href="http://www.tutorialspoint.com/mysql/index.htm" target="_top">MySQL </a> |
+<a href="http://www.tutorialspoint.com/cplusplus/index.htm" target="_top">C++ </a> |
+<a href="http://www.tutorialspoint.com/unix/index.htm" target="_top">UNIX </a>
+</div>
+<div id="copyright">
+<p>Copyright © 2012 by tutorialspoint. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+
+<iframe name="oauth2relay523142837" id="oauth2relay523142837" src="./Swing JTextField Class_files/postmessageRelay.htm" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>
