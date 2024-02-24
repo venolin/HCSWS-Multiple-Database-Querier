@@ -5,12 +5,14 @@
 
 package hcsws1;
 
+
 /**
  *
  * @author venolin
  */
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.*;
@@ -28,16 +30,17 @@ import java.util.List;
 import java.util.Properties;
 import static javax.swing.JTable.AUTO_RESIZE_OFF;
 import javax.swing.SwingWorker;
+import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.tree.DefaultMutableTreeNode;
 
         
 public class Main extends JFrame {
 
-    
   
    
-   JPanel centerPanel;//JTabbedPane fits in here. Created for sizing purposes due to limited screen resolution on most older computers.
    JPanel topPanel;
+   JSplitPane centerSplitPane;
    
    //Menu Objects
    JMenuBar menuBar;
@@ -48,17 +51,20 @@ public class Main extends JFrame {
    JButton beginButton;
    JLabel dirLabel;
    JLabel mainLabel;
-   JTextField queryText;
+   JTextArea queryText;
    JTextField dirText;
    JPopupMenu contextPopup;
  
    JTextArea outputArea;
-   JScrollPane sp,sp2;
+   JScrollPane sp,sp2,sp3,treeScrollPane;
    JProgressBar progressBar;
    JTabbedPane resultTabbedPane;
+   JTree directoryTree;
    
             
    JTable outputTable;           
+   
+   JFileChooser fileChooser;
    
    //Variables
    
@@ -383,14 +389,16 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
      {
          try
          {
-             resultSet.close();
+             
              statement.close();
              connection.close();
+             resultSet.close();
          }
          catch (Exception e)
          {
 //             e.printStackTrace();
              System.out.println(databaseName + e);
+             System.out.println("Unable to close " + databaseName);
          }
      }
 //     System.out.println("VenTestConnection: " + databaseLocal);
@@ -398,25 +406,60 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
      
      
     }
-   public Main(){
+  public Main(){
        
      
      
-     centerPanel = new JPanel();
+
+     
      topPanel = new JPanel();
-         
+//     topPanel.setBackground(Color.LIGHT_GRAY);
+//     topPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+     //leftPanel = new JPanel();
+     
+     //leftPanel.setLayout(new BorderLayout());  
+     
+     directoryTree = new JTree(populateJTree());
+     
+     treeScrollPane = new JScrollPane(directoryTree);
+     
+     
+     //directoryTree.setPreferredSize(new Dimension(300, 360));
+     treeScrollPane.setMinimumSize(new Dimension(150, 360));
+     
+     //directoryTree.setRootVisible(false); //Makes the JTree's root invisible to make the JTree appear to have multiple Roots.
+     
+     //leftPanel.add(treeScrollPane);
+     
      menuBar = new JMenuBar();
      
      
      
      beginButton = new JButton("Begin");
      dirLabel = new JLabel("DB Directory:",JLabel.LEFT);
+     
      mainLabel = new JLabel("Query:",JLabel.LEFT);
-     queryText = new JTextField("SELECT SiteName,(SELECT COUNT(*) FROM Groups WHERE GroupType=1) AS [EntranceCounters],(SELECT COUNT(*) FROM Groups WHERE GroupType=0) AS [FlowCounters],(SELECT COUNT(*) FROM Groups WHERE GroupType=3) AS [CrossOverCounters],(SELECT COUNT(*) FROM Groups WHERE GroupType=2) AS [InterLevelCounters] FROM SiteInfo",20);
+     queryText = new JTextArea("SELECT SiteName,(SELECT COUNT(*) FROM Groups\n" +
+        "WHERE GroupType=1) AS [EntranceCounters],\n" +
+        "(SELECT COUNT(*) FROM Groups WHERE GroupType=0) AS [FlowCounters],\n" +
+        "(SELECT COUNT(*) FROM Groups WHERE GroupType=3) AS [CrossOverCounters],\n" +
+        "(SELECT COUNT(*) FROM Groups WHERE GroupType=2) AS [InterLevelCounters]\n" +
+        "FROM SiteInfo");
+     queryText.setToolTipText("<html>Enter an SQL query here. Queries are case and carriage return insensitive. <br><br> <b>Example:</b><br>SELECT SiteName,<br>(SELECT COUNT(*) FROM Groups WHERE GroupType=1) AS [EntranceCounters],<br>(SELECT COUNT(*) FROM Groups WHERE GroupType=0) AS [FlowCounters],<br>(SELECT COUNT(*) FROM Groups WHERE GroupType=3) AS [CrossOverCounters],<br>(SELECT COUNT(*) FROM Groups WHERE GroupType=2) AS [InterLevelCounters] <br> FROM SiteInfo</html>");
+     sp3 = new JScrollPane(queryText);
+     sp3.setMinimumSize(new Dimension(150, 230));
+//     queryText.setLayout(new BorderLayout());
+//     queryText.setPreferredSize(new Dimension(500, 450));
+     
      dirText = new JTextField(dir,20);
-     outputArea = new JTextArea(20,59);
+     dirText.setToolTipText("<html>Enter the location of your databases here. <br><br> <b>Example:</b><br>C:/NortechSystems/data/ </html>");
+     
+     outputArea = new JTextArea(5,59); //the amounts inserted in here aren't measured in pixels.
+     outputArea.setEditable(false);
+     
      sp = new JScrollPane(outputArea);
      
+     fileChooser = new JFileChooser();
      
      resultTabbedPane = new JTabbedPane();
      outputTable = new JTable();
@@ -476,7 +519,7 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
         
         rbMenuItem.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-           JOptionPane.showMessageDialog(centerPanel,"Configuration saved. Please restart the app for the changes to take effect.","Restart required",JOptionPane.PLAIN_MESSAGE);
+           JOptionPane.showMessageDialog(centerSplitPane,"Configuration saved. Please restart the app for the changes to take effect.","Restart required",JOptionPane.PLAIN_MESSAGE);
             theme = "java";
             defaultProps.setProperty("theme", "java");
            writeToConfiguration();
@@ -498,7 +541,7 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
         
         rbMenuItem.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-           JOptionPane.showMessageDialog(centerPanel,"Configuration saved. Please restart the app for the changes to take effect.","Restart required",JOptionPane.PLAIN_MESSAGE);
+           JOptionPane.showMessageDialog(centerSplitPane,"Configuration saved. Please restart the app for the changes to take effect.","Restart required",JOptionPane.PLAIN_MESSAGE);
            theme = "system";
            defaultProps.setProperty("theme", "system");
            writeToConfiguration();
@@ -514,7 +557,27 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
        "venTest");
      menuBar.add(menu);
      
+     { //bracket venAdded to specify event for which control
+     menuItem = new JMenuItem("Request a feature",
+                         KeyEvent.VK_T);
+     menuItem.setAccelerator(KeyStroke.getKeyStroke(
+        KeyEvent.VK_2, ActionEvent.ALT_MASK));
+     menuItem.getAccessibleContext().setAccessibleDescription(
+        "This doesn't really do anything");
+     menu.add(menuItem);
      
+     menuItem.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            SendMailSSL requestFeature = new SendMailSSL(); //Initialize class
+            
+            requestFeature.setLocationRelativeTo(centerSplitPane);
+            //ven.show(); //.show is no longer used. Has been replaced by .setVisible
+            requestFeature.setVisible(true); //Show interface of class
+            //ven.ven(); //Execute class
+         }
+     });}
+     
+     menu.addSeparator();
       menuItem = new JMenuItem("About",
                          KeyEvent.VK_T);
      menuItem.setAccelerator(KeyStroke.getKeyStroke(
@@ -530,18 +593,18 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
      topPanel.add(dirLabel);
      topPanel.add(dirText);
      topPanel.add(mainLabel);
-     topPanel.add(queryText);
+     //topPanel.add(queryText);
      topPanel.add(beginButton);
      
           
      resultTabbedPane.addTab("CSV",sp); //Adds the sp which in turn adds the outputArea
-     centerPanel.add(resultTabbedPane);
+     //centerPanel.add(resultTabbedPane);
      
      
     //resultTabbedPane.setEnabledAt(1, false);
      
      //resultTabbedPane.addTab("Table",outputTable); 
-     centerPanel.add(resultTabbedPane);
+     //centerPanel.add(resultTabbedPane);
      
      resultTabbedPane.setPreferredSize(new Dimension(680, 360)); //Forces size of object else object sizes to fit container :(
      
@@ -550,35 +613,49 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
      
      this.add(progressBar, BorderLayout.PAGE_END); //JFrame is the highest level container followed by JPanel. Self reference to the active JFrame using the keyword 'this'.
      
-     this.add(centerPanel, BorderLayout.CENTER);
+//     this.add(centerPanel, BorderLayout.CENTER);
+//     
+//     this.add(leftPanel, BorderLayout.WEST); 
 
+     centerSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,sp3,resultTabbedPane);
+     this.add(centerSplitPane);
+     
      menuItem.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-           JOptionPane.showMessageDialog(centerPanel,"<html><u>Authors</u></html>\nWezi Kauleza\nVenolin Naidoo (venolin1@gmail.com)\n\n10/09/2014\nThis application makes use of an open source library created by The SQLite Consortium.","About",JOptionPane.PLAIN_MESSAGE); //html used to format text in JOptionPane
+           JOptionPane.showMessageDialog(centerSplitPane,"<html><u>Authors</u></html>\nWezi Kauleza\nVenolin Naidoo (venolin1@gmail.com)\n\n10/09/2014\nThis application makes use of an open source library created by The SQLite Consortium.","About",JOptionPane.PLAIN_MESSAGE); //html used to format text in JOptionPane
          }
      });
+     
+     
      
      beginButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             outputArea.setText("");
             dir = dirText.getText();
             query = queryText.getText();
+            
             //getFileList();
            
-            
-            
-            
             (new BackgroundProcess()).execute();
-           
-           
-            
-            
 //            conn(dir,query);
-            
          }
       });
      
-      
+     
+     
+     
+//      dirText.addFocusListener(new FocusListener() {
+//         public void focusGained(FocusEvent e) {
+//             fileChooser.showOpenDialog(menu);
+//          
+//         }
+//
+//         public void focusLost(FocusEvent fe) {
+//             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//         }
+//     });      
+     
+     
 //      Action copyAction = queryText.getActionMap().get("copy");
 //      Action cutAction = queryText.getActionMap().get("cut");
 //      Action pasteAction = queryText.getActionMap().get("paste");
@@ -593,8 +670,8 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
 //      contextPopup.add(pasteAction);
 //      contextPopup.addSeparator();
 //      contextPopup.add(selectAllAction);
-//
-//      return;
+
+     this.getRootPane().setDefaultButton(beginButton); //Set the Enter key press event to beginButton while focus is anywhere on this form.
    }
     /**
      * @param args the command line arguments
@@ -644,9 +721,9 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
         
         
         
-        Main first = new Main();
-        first.setResizable(false);
-        first.setTitle("HCSWS Multiple Database Querier V1.3.1");
+        Main first = new Main(); //this effectively creates a new JFrame as 'Main() extends JFrame
+        //first.setResizable(false);
+        first.setTitle("HCSWS Multiple Database Querier V1.3.2");
         first.setSize(720, 490);
         first.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         first.setVisible(true);
@@ -707,7 +784,8 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
        
     }
     
-    public static void checkDirectoryValidity() {
+    //This can be deleted as it is not used
+    public Boolean checkDirectoryValidity() {
         
                    
     File folder = new File(dir);
@@ -719,8 +797,109 @@ File[] listOfFiles = folder.listFiles(new FilenameFilter() {
 
 
     }
-});
+    });
+    if (listOfFiles.length > 0) {
+       return true; 
+    } else {
+        return false;
+    }
+       
        
     }
     
+    public DefaultMutableTreeNode populateJTree() {
+     DefaultMutableTreeNode top = new DefaultMutableTreeNode("Computer"); 
+        
+    for (File path:getDiskDrives()) {
+       DefaultMutableTreeNode disk = new DefaultMutableTreeNode(path); 
+       top.add(disk);
+       
+       DefaultMutableTreeNode loading = new DefaultMutableTreeNode("loading... gfjhfgjrtytruytjkrtyiyujhyg");
+       disk.add(loading);
+       
+       DefaultMutableTreeNode loading2 = new DefaultMutableTreeNode("loading... gfjhfgjrtytruytjkrtyiyujhyg");
+       loading.add(loading2);
+    }
+        
+    
+    
+    
+
+     
+      return top; 
+    }
+    
+    public File[] getDiskDrives() {
+        File[] paths;
+        
+        FileSystemView fsv;
+        fsv = FileSystemView.getFileSystemView();
+        
+        paths = File.listRoots();
+        
+       return paths;
+    }
+   
+    //Refactor begin below.
+    
+    public File[] getDatabaseList(String directory, final String exception, final String filter) {
+
+
+    File folder = new File(directory);
+
+    File[] listOfDatabases = folder.listFiles(new FilenameFilter() {
+    @Override
+    public boolean accept(File directory, String name) {
+        return name.endsWith(exception) != name.endsWith(filter);
+
+
+    }
+});
+       return listOfDatabases;
+
+
+
+    }
+    
+    public ResultSet connection(String databaseLocation,String sqlQuery) {
+     Connection connection = null;
+     ResultSet resultSet = null;
+     Statement statement = null;
+     
+       try
+     { 
+        Class.forName("org.sqlite.JDBC");
+         connection = DriverManager.getConnection("jdbc:sqlite:" + databaseLocation);
+//         ven\\sample.db
+         statement = connection.createStatement();
+         resultSet = statement
+                 .executeQuery(sqlQuery); 
+     } catch (Exception e)
+     {
+
+     }
+     finally
+     {
+         try
+         {
+             
+             statement.close();
+             connection.close();
+             resultSet.close();
+         }
+         catch (Exception e)
+         {
+
+         }
+     }
+       return resultSet;
+   }
+    
+    public String appendDatabaseNameToResult(Boolean append) {
+       
+        
+        
+        return null;
+        
+    }
 }

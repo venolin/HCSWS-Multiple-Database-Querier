@@ -2,10 +2,10 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "HCSWS Multiple Database Querier"
-#define MyAppVersion "1.2"
+#define MyAppVersion "1.3.2"
 #define MyAppPublisher "Venolin Naidoo"
 #define MyAppURL "NA"
-#define MyAppExeName "HCSWS_Multiple_Database_Querier.jar"
+#define MyAppExeName "MDBQ.jar"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
